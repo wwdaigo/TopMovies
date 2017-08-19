@@ -9,8 +9,11 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+<<<<<<< HEAD
             <option value="$PROJECT_DIR$/data" />
             <option value="$PROJECT_DIR$/remote" />
+=======
+>>>>>>> parent of 6525816... Creates the Data module
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

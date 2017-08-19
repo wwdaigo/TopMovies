@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 include ':app', ':data', ':remote'
+=======
+include ':app'
+>>>>>>> parent of 6525816... Creates the Data module
