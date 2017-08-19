@@ -8,6 +8,7 @@ import io.wwdaigo.topmovies.dagger.modules.ActivityModule;
 import io.wwdaigo.topmovies.dagger.modules.ApiModule;
 import io.wwdaigo.topmovies.dagger.modules.ManagerModule;
 import io.wwdaigo.topmovies.dagger.modules.ViewModelModule;
+import io.wwdaigo.topmovies.features.movielist.fragments.MovieListFragment;
 
 /**
  * Created by daigomatsuoka on 19/08/17.
@@ -20,5 +21,4 @@ import io.wwdaigo.topmovies.dagger.modules.ViewModelModule;
         ManagerModule.class,
         ViewModelModule.class})
 public interface AppComponent extends AndroidInjector<App> {
-
 }
