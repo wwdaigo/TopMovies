@@ -1,9 +1,1 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-include ':app', ':data', ':remote'
-=======
 include ':app'
->>>>>>> parent of 6525816... Creates the Data module
-=======
-include ':app', ':data'
->>>>>>> parent of 33c974d... Create the Remote module
