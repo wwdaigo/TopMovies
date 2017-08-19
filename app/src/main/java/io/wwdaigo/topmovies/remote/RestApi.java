@@ -22,13 +22,14 @@ import static io.wwdaigo.topmovies.commons.Constants.Remote.TIMEOUT;
 
 public class RestApi {
 
-
     private OkHttpClient okHttpClient = new OkHttpClient.Builder()
+            .addInterceptor(new RestInterceptor())
             .readTimeout(TIMEOUT, TimeUnit.SECONDS)
             .connectTimeout(TIMEOUT, TimeUnit.SECONDS)
             .build();
 
     private Retrofit retrofit = new Retrofit.Builder()
+            .baseUrl(BuildConfig.SERVER_URL)
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
