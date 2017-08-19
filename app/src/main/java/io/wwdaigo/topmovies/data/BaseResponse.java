@@ -8,7 +8,7 @@ import java.util.List;
  * Created by daigomatsuoka on 19/08/17.
  */
 
-public class BaseResponse<T> {
+public final class BaseResponse<T> {
     private int id;
     private int page;
     @SerializedName("total_pages")
