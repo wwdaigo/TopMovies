@@ -5,4 +5,5 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="background_movie_stripe">#99000000</color>
+    <color name="loading_text">#CCCCCC</color>
 </resources>
