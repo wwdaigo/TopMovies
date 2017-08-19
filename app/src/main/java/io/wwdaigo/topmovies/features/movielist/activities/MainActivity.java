@@ -28,8 +28,8 @@ public class MainActivity extends Activity implements HasFragmentInjector, OnMov
         setContentView(R.layout.activity_main);
 
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.add(R.id.main_fragment_container, MovieListFragment.newInstance());
-        transaction.commit();
+        transaction.replace(R.id.main_fragment_container, MovieListFragment.newInstance());
+        transaction.commitAllowingStateLoss();
     }
 
     @Override

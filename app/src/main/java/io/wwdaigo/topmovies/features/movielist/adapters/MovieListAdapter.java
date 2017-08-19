@@ -27,7 +27,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
 
     private List<MovieData> movieDataList;
 
-    public MovieListAdapter(Observable<List<MovieData>> observableMovieDataList) {
+    public void setObservableList(Observable<List<MovieData>> observableMovieDataList) {
 
         movieDataList = new ArrayList<>();
         observableMovieDataList
@@ -41,6 +41,8 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
                 });
 
     }
+
+
 
     @Override
     public MovieItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

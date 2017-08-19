@@ -5,7 +5,9 @@ import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +27,9 @@ public class MovieListFragment extends Fragment {
 
     @Inject
     MovieListViewModelType viewModel;
+
+    @Inject
+    MovieListAdapter movieListAdapter;
 
     FragmentMovieListBinding binding;
 
@@ -85,11 +90,23 @@ public class MovieListFragment extends Fragment {
     }
 
     private void bindMovieListRecyclerView() {
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-        MovieListAdapter movieListAdapter = new MovieListAdapter(viewModel.getOutputs().listMovieData());
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), numberOfColumns());
+        movieListAdapter.setObservableList(viewModel.getOutputs().listMovieData());
 
         binding.movieListRecyclerView.setHasFixedSize(true);
-        binding.movieListRecyclerView.setLayoutManager(linearLayoutManager);
+        binding.movieListRecyclerView.setLayoutManager(gridLayoutManager);
         binding.movieListRecyclerView.setAdapter(movieListAdapter);
+    }
+
+    private int numberOfColumns() {
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+
+        int minCols = getActivity().getResources().getInteger(R.integer.poster_min_cols);
+        int widthDivider = getActivity().getResources().getInteger(R.integer.poster_width);
+        int width = displayMetrics.widthPixels;
+        int nColumns = width / widthDivider;
+        if (nColumns < minCols) return minCols;
+        return nColumns;
     }
 }
