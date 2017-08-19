@@ -2,6 +2,8 @@ package io.wwdaigo.topmovies.features.movielist.viewmodels;
 
 import android.util.Log;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
@@ -25,7 +27,8 @@ public class MovieListViewModel implements MovieListViewModelType, MovieListView
 
     private PublishSubject<Boolean> isLoadingPublish;
     private Observable<Boolean> isLoading;
-    private Observable<MovieData> movieData;
+    private PublishSubject<List<MovieData>> listMovieDataPublish;
+    private Observable<List<MovieData>> listMovieData;
 
     public MovieListViewModel(MoviesManager moviesManager) {
 
@@ -34,7 +37,8 @@ public class MovieListViewModel implements MovieListViewModelType, MovieListView
         isLoadingPublish = PublishSubject.create();
         isLoading = isLoadingPublish;
 
-        movieData = PublishSubject.create();
+        listMovieDataPublish = PublishSubject.create();
+        listMovieData = listMovieDataPublish;
     }
 
     @Override
@@ -59,7 +63,9 @@ public class MovieListViewModel implements MovieListViewModelType, MovieListView
                 .subscribe(new Consumer<Result<BaseResponse<MovieData>>>() {
                     @Override
                     public void accept(@NonNull Result<BaseResponse<MovieData>> baseResponseResult) throws Exception {
-                        Log.i("RESULT", baseResponseResult.response().toString());
+                        MovieListViewModel.this.listMovieDataPublish.onNext(
+                                baseResponseResult.response().body().getResults()
+                        );
                     }
                 });
     }
@@ -72,7 +78,7 @@ public class MovieListViewModel implements MovieListViewModelType, MovieListView
     }
 
     @Override
-    public Observable<MovieData> getMovieData() {
-        return movieData;
+    public Observable<List<MovieData>> listMovieData() {
+        return listMovieData;
     }
 }

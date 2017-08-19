@@ -1,8 +1,10 @@
 package io.wwdaigo.topmovies.dagger.modules;
 
-import dagger.Binds;
 import dagger.Module;
 import dagger.Provides;
+import dagger.android.ContributesAndroidInjector;
+import io.wwdaigo.topmovies.features.movielist.activities.MainActivity;
+import io.wwdaigo.topmovies.features.movielist.fragments.MovieListFragment;
 import io.wwdaigo.topmovies.features.movielist.viewmodels.MovieListViewModel;
 import io.wwdaigo.topmovies.features.movielist.viewmodels.MovieListViewModelType;
 import io.wwdaigo.topmovies.remote.manager.MoviesManager;
@@ -12,7 +14,13 @@ import io.wwdaigo.topmovies.remote.manager.MoviesManager;
  */
 
 @Module
-public abstract class ViewModelModule {
+public abstract class MovieListModule {
+
+    @ContributesAndroidInjector
+    abstract MainActivity mainActivityInjector();
+
+    @ContributesAndroidInjector
+    abstract MovieListFragment movieListFragmentInjector();
 
     @Provides
     static MovieListViewModelType providesMovieListViewModel(MoviesManager moviesManager) {
