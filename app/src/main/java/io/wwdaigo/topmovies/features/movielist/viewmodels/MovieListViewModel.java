@@ -1,5 +1,7 @@
 package io.wwdaigo.topmovies.features.movielist.viewmodels;
 
+import javax.inject.Inject;
+
 import io.reactivex.Observable;
 import io.reactivex.subjects.PublishSubject;
 import io.wwdaigo.topmovies.data.MovieData;
@@ -10,11 +12,14 @@ import io.wwdaigo.topmovies.data.MovieData;
 
 public class MovieListViewModel implements MovieListViewModelType, MovieListViewModelInputs, MovieListViewModelOutputs {
 
+    private PublishSubject<Boolean> isLoadingPublish;
     private Observable<Boolean> isLoading;
     private Observable<MovieData> movieData;
 
     public MovieListViewModel() {
-        isLoading = PublishSubject.create();
+        isLoadingPublish = PublishSubject.create();
+        isLoading = isLoadingPublish;
+
         movieData = PublishSubject.create();
     }
 
@@ -24,7 +29,7 @@ public class MovieListViewModel implements MovieListViewModelType, MovieListView
     }
 
     @Override
-    public MovieListViewModelInputs getOutputs() {
+    public MovieListViewModelOutputs getOutputs() {
         return this;
     }
 
@@ -32,7 +37,7 @@ public class MovieListViewModel implements MovieListViewModelType, MovieListView
 
     @Override
     public void loadMovies() {
-
+        isLoadingPublish.onNext(true);
     }
 
     /* OUTPUTS */

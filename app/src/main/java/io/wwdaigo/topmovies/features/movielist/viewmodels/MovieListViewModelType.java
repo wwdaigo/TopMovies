@@ -6,5 +6,5 @@ package io.wwdaigo.topmovies.features.movielist.viewmodels;
 
 public interface MovieListViewModelType {
     MovieListViewModelInputs getInputs();
-    MovieListViewModelInputs getOutputs();
+    MovieListViewModelOutputs getOutputs();
 }
