@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,6 +74,9 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
 
         public void bind (MovieData movieData) {
             binding.setMovieData(movieData);
+            Picasso.with(binding.getRoot().getContext())
+                    .load(movieData.getPosterPath())
+                    .into(binding.movieCoverImage);
         }
     }
 }
