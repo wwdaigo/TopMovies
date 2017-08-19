@@ -93,7 +93,14 @@ public class MovieListFragment extends Fragment {
             }
         });
 
-        disposable.addAll(loadingDisposable);
+        Disposable titleStringResourceDisposable = viewModel.getOutputs().getTitleStringResource().subscribe(new Consumer<Integer>() {
+            @Override
+            public void accept(@NonNull Integer res) throws Exception {
+                mListener.setActivityTitle(res);
+            }
+        });
+
+        disposable.addAll(loadingDisposable, titleStringResourceDisposable);
     }
 
     private void bindMovieListRecyclerView() {

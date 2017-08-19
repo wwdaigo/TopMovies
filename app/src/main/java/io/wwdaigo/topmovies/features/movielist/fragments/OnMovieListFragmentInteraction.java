@@ -6,4 +6,5 @@ package io.wwdaigo.topmovies.features.movielist.fragments;
 
 public interface OnMovieListFragmentInteraction {
     void toggleLoadingMode(boolean loading);
+    void setActivityTitle(int resId);
 }

@@ -64,6 +64,11 @@ public class MainActivity extends Activity implements HasFragmentInjector, OnMov
     }
 
     @Override
+    public void setActivityTitle(int resId) {
+        this.setTitle(resId);
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
