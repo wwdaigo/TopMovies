@@ -2,11 +2,13 @@ package io.wwdaigo.topmovies.features.movielist.fragments;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
+import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -109,4 +111,5 @@ public class MovieListFragment extends Fragment {
         if (nColumns < minCols) return minCols;
         return nColumns;
     }
+
 }
