@@ -1,4 +1,4 @@
-package io.wwdaigo.topmovies.features.movielist.fragments;
+package io.wwdaigo.topmovies.features.movielist.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -24,9 +24,6 @@ public class MainActivity extends Activity {
     @Inject
     MovieListViewModelType viewModel;
 
-    @Inject
-    MoviesManager moviesManager;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         AndroidInjection.inject(this);
@@ -41,15 +38,5 @@ public class MainActivity extends Activity {
             }
         });
         viewModel.getInputs().loadMovies();
-
-        moviesManager.getPopular()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<Result<BaseResponse<MovieData>>>() {
-                    @Override
-                    public void accept(@NonNull Result<BaseResponse<MovieData>> baseResponseResult) throws Exception {
-                        Log.i("RESULT", baseResponseResult.response().toString());
-                    }
-                });
     }
 }

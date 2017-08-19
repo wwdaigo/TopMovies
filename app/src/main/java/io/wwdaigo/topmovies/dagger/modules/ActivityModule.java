@@ -2,7 +2,7 @@ package io.wwdaigo.topmovies.dagger.modules;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
-import io.wwdaigo.topmovies.features.movielist.fragments.MainActivity;
+import io.wwdaigo.topmovies.features.movielist.activity.MainActivity;
 
 /**
  * Created by daigomatsuoka on 18/08/17.
