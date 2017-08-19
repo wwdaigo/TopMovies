@@ -14,7 +14,9 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import io.wwdaigo.topmovies.data.BaseResponse;
 import io.wwdaigo.topmovies.data.MovieData;
+import io.wwdaigo.topmovies.remote.RestApi;
 import io.wwdaigo.topmovies.remote.manager.MoviesManager;
+import io.wwdaigo.topmovies.remote.request.MoviesRequest;
 import retrofit2.adapter.rxjava2.Result;
 
 public class MainActivity extends Activity {

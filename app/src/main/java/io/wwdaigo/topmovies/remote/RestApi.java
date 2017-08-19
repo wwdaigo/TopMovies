@@ -3,8 +3,11 @@ package io.wwdaigo.topmovies.remote;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import javax.inject.Inject;
+
 import io.wwdaigo.topmovies.BuildConfig;
 import io.wwdaigo.topmovies.commons.Constants;
+import io.wwdaigo.topmovies.remote.request.MoviesRequest;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -46,7 +49,7 @@ public class RestApi {
         }
     }
 
-    public Retrofit getRetrofit() {
-        return retrofit;
+    public MoviesRequest getMovieRequest() {
+        return retrofit.create(MoviesRequest.class);
     }
 }
