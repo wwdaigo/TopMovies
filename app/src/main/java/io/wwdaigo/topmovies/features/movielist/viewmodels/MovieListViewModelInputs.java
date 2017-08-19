@@ -5,4 +5,5 @@ package io.wwdaigo.topmovies.features.movielist.viewmodels;
  */
 
 public interface MovieListViewModelInputs {
+    void loadMovies();
 }
