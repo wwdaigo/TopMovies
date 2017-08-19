@@ -1,4 +1,4 @@
-package io.wwdaigo.topmovies;
+package io.wwdaigo.topmovies.commons;
 
 import android.app.Application;
 
@@ -7,4 +7,10 @@ import android.app.Application;
  */
 
 public class App extends Application {
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+    }
+
 }
