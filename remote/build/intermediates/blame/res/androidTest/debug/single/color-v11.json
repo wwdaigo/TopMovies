@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/daigomatsuoka/Documents/TopMovies/remote/build/intermediates/res/merged/androidTest/debug/color-v11/abc_background_cache_hint_selector_material_dark.xml",
+        "source": "/Users/daigomatsuoka/.android/build-cache/afc6794b6a310d68c58753963e5600874c97443e/output/res/color-v11/abc_background_cache_hint_selector_material_dark.xml"
+    },
+    {
+        "merged": "/Users/daigomatsuoka/Documents/TopMovies/remote/build/intermediates/res/merged/androidTest/debug/color-v11/abc_background_cache_hint_selector_material_light.xml",
+        "source": "/Users/daigomatsuoka/.android/build-cache/afc6794b6a310d68c58753963e5600874c97443e/output/res/color-v11/abc_background_cache_hint_selector_material_light.xml"
+    }
+]

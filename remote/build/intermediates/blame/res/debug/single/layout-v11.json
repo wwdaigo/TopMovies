@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "/Users/daigomatsuoka/Documents/TopMovies/remote/build/intermediates/res/merged/debug/layout-v11/notification_media_cancel_action.xml",
+        "source": "/Users/daigomatsuoka/.android/build-cache/afc6794b6a310d68c58753963e5600874c97443e/output/res/layout-v11/notification_media_cancel_action.xml"
+    },
+    {
+        "merged": "/Users/daigomatsuoka/Documents/TopMovies/remote/build/intermediates/res/merged/debug/layout-v11/notification_template_big_media_narrow_custom.xml",
+        "source": "/Users/daigomatsuoka/.android/build-cache/afc6794b6a310d68c58753963e5600874c97443e/output/res/layout-v11/notification_template_big_media_narrow_custom.xml"
+    },
+    {
+        "merged": "/Users/daigomatsuoka/Documents/TopMovies/remote/build/intermediates/res/merged/debug/layout-v11/notification_template_big_media_custom.xml",
+        "source": "/Users/daigomatsuoka/.android/build-cache/afc6794b6a310d68c58753963e5600874c97443e/output/res/layout-v11/notification_template_big_media_custom.xml"
+    },
+    {
+        "merged": "/Users/daigomatsuoka/Documents/TopMovies/remote/build/intermediates/res/merged/debug/layout-v11/notification_template_big_media_narrow.xml",
+        "source": "/Users/daigomatsuoka/.android/build-cache/afc6794b6a310d68c58753963e5600874c97443e/output/res/layout-v11/notification_template_big_media_narrow.xml"
+    },
+    {
+        "merged": "/Users/daigomatsuoka/Documents/TopMovies/remote/build/intermediates/res/merged/debug/layout-v11/notification_media_action.xml",
+        "source": "/Users/daigomatsuoka/.android/build-cache/afc6794b6a310d68c58753963e5600874c97443e/output/res/layout-v11/notification_media_action.xml"
+    },
+    {
+        "merged": "/Users/daigomatsuoka/Documents/TopMovies/remote/build/intermediates/res/merged/debug/layout-v11/notification_template_big_media.xml",
+        "source": "/Users/daigomatsuoka/.android/build-cache/afc6794b6a310d68c58753963e5600874c97443e/output/res/layout-v11/notification_template_big_media.xml"
+    }
+]
