@@ -17,6 +17,7 @@ public final class Constants {
     }
 
     public final class FragmentTags {
+        public static final String MOVIES_FRAGMENT_TAG = "moviesFragmentTag";
         public static final String LOADING_FRAGMENT_TAG = "loadingFragmentTag";
     }
 

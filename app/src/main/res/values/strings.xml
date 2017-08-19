@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">TopMovies</string>
 
+    <string name="popular_movies">Popular Movies</string>
+    <string name="top_rated_movies">Top Rated Movies</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="loading_text">Hold on!\nWe are getting your movies!</string>
 </resources>

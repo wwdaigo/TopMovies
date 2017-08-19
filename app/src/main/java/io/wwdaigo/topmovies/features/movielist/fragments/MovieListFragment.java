@@ -2,15 +2,10 @@ package io.wwdaigo.topmovies.features.movielist.fragments;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
-import android.graphics.Rect;
-import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,7 +57,7 @@ public class MovieListFragment extends Fragment {
                 inflater, R.layout.fragment_movie_list, container, false);
 
         bindMovieListRecyclerView();
-        viewModel.getInputs().loadMovies();
+        viewModel.getInputs().loadTopRatedMovies();
 
         return binding.getRoot();
     }
@@ -98,7 +93,14 @@ public class MovieListFragment extends Fragment {
             }
         });
 
-        disposable.addAll(loadingDisposable);
+        Disposable titleStringResourceDisposable = viewModel.getOutputs().getTitleStringResource().subscribe(new Consumer<Integer>() {
+            @Override
+            public void accept(@NonNull Integer res) throws Exception {
+                mListener.setActivityTitle(res);
+            }
+        });
+
+        disposable.addAll(loadingDisposable, titleStringResourceDisposable);
     }
 
     private void bindMovieListRecyclerView() {
@@ -122,4 +124,15 @@ public class MovieListFragment extends Fragment {
         return nColumns;
     }
 
+    public void toggleList(int optionId) {
+        switch (optionId) {
+            case R.id.menu_main_popular:
+                viewModel.getInputs().loadMostPopularMovies();
+                break;
+
+            case R.id.menu_main_top_rated:
+                viewModel.getInputs().loadTopRatedMovies();
+                break;
+        }
+    }
 }

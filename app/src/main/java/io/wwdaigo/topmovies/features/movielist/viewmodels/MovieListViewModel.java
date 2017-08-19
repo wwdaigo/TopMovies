@@ -12,6 +12,7 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.PublishSubject;
+import io.wwdaigo.topmovies.R;
 import io.wwdaigo.topmovies.data.BaseResponse;
 import io.wwdaigo.topmovies.data.MovieData;
 import io.wwdaigo.topmovies.remote.manager.MoviesManager;
@@ -27,8 +28,12 @@ public class MovieListViewModel implements MovieListViewModelType, MovieListView
 
     private PublishSubject<Boolean> isLoadingPublish;
     private Observable<Boolean> isLoading;
+
     private PublishSubject<List<MovieData>> listMovieDataPublish;
     private Observable<List<MovieData>> listMovieData;
+
+    private PublishSubject<Integer> titleStringResourcePublish;
+    private Observable<Integer> titleStringResource;
 
     public MovieListViewModel(MoviesManager moviesManager) {
 
@@ -39,6 +44,9 @@ public class MovieListViewModel implements MovieListViewModelType, MovieListView
 
         listMovieDataPublish = PublishSubject.create();
         listMovieData = listMovieDataPublish;
+
+        titleStringResourcePublish = PublishSubject.create();
+        titleStringResource = titleStringResourcePublish;
     }
 
     @Override
@@ -54,7 +62,28 @@ public class MovieListViewModel implements MovieListViewModelType, MovieListView
     /* INPUTS */
 
     @Override
-    public void loadMovies() {
+    public void loadTopRatedMovies() {
+        isLoadingPublish.onNext(true);
+
+        moviesManager.getTopRated()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<Result<BaseResponse<MovieData>>>() {
+                    @Override
+                    public void accept(@NonNull Result<BaseResponse<MovieData>> baseResponseResult) throws Exception {
+
+                        isLoadingPublish.onNext(false);
+                        titleStringResourcePublish.onNext(R.string.top_rated_movies);
+
+                        MovieListViewModel.this.listMovieDataPublish.onNext(
+                                baseResponseResult.response().body().getResults()
+                        );
+                    }
+                });
+    }
+
+    @Override
+    public void loadMostPopularMovies() {
         isLoadingPublish.onNext(true);
 
         moviesManager.getPopular()
@@ -65,6 +94,7 @@ public class MovieListViewModel implements MovieListViewModelType, MovieListView
                     public void accept(@NonNull Result<BaseResponse<MovieData>> baseResponseResult) throws Exception {
 
                         isLoadingPublish.onNext(false);
+                        titleStringResourcePublish.onNext(R.string.popular_movies);
 
                         MovieListViewModel.this.listMovieDataPublish.onNext(
                                 baseResponseResult.response().body().getResults()
@@ -83,5 +113,10 @@ public class MovieListViewModel implements MovieListViewModelType, MovieListView
     @Override
     public Observable<List<MovieData>> listMovieData() {
         return listMovieData;
+    }
+
+    @Override
+    public Observable<Integer> getTitleStringResource() {
+        return titleStringResource;
     }
 }

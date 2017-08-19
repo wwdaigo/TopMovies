@@ -5,6 +5,8 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import javax.inject.Inject;
 
@@ -18,6 +20,7 @@ import io.wwdaigo.topmovies.features.movielist.fragments.MovieListFragment;
 import io.wwdaigo.topmovies.features.movielist.fragments.OnMovieListFragmentInteraction;
 
 import static io.wwdaigo.topmovies.commons.Constants.FragmentTags.LOADING_FRAGMENT_TAG;
+import static io.wwdaigo.topmovies.commons.Constants.FragmentTags.MOVIES_FRAGMENT_TAG;
 
 public class MainActivity extends Activity implements HasFragmentInjector, OnMovieListFragmentInteraction {
 
@@ -32,7 +35,7 @@ public class MainActivity extends Activity implements HasFragmentInjector, OnMov
         setContentView(R.layout.activity_main);
 
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.main_fragment_container, MovieListFragment.newInstance());
+        transaction.replace(R.id.main_fragment_container, MovieListFragment.newInstance(), MOVIES_FRAGMENT_TAG);
         transaction.commit();
     }
 
@@ -45,19 +48,45 @@ public class MainActivity extends Activity implements HasFragmentInjector, OnMov
     public void toggleLoadingMode(boolean loading) {
 
         FragmentManager manager = getFragmentManager();
-            FragmentTransaction transaction = manager.beginTransaction();
+        FragmentTransaction transaction = manager.beginTransaction();
 
-            if (loading) {
-                transaction.add(R.id.main_fragment_container,
+        if (loading) {
+            transaction.add(R.id.main_fragment_container,
                         LoadingFragment.newInstance(),
                         LOADING_FRAGMENT_TAG)
                         .commit();
-            } else {
-                LoadingFragment fragment = (LoadingFragment) manager.findFragmentByTag(LOADING_FRAGMENT_TAG);
-                if (fragment != null) {
-                    transaction.remove(fragment)
-                            .commit();
-                }
+        } else {
+            LoadingFragment fragment = (LoadingFragment) manager.findFragmentByTag(LOADING_FRAGMENT_TAG);
+            if (fragment != null) {
+                transaction.remove(fragment).commit();
+            }
+        }
+    }
+
+    @Override
+    public void setActivityTitle(int resId) {
+        this.setTitle(resId);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        postMenuOptionToFragment(item.getItemId());
+        return true;
+    }
+
+    private void postMenuOptionToFragment(int optionId) {
+
+        FragmentManager manager = getFragmentManager();
+
+        MovieListFragment movieListFragment = (MovieListFragment) manager.findFragmentByTag(MOVIES_FRAGMENT_TAG);
+        if (movieListFragment != null) {
+            movieListFragment.toggleList(optionId);
         }
     }
 }
