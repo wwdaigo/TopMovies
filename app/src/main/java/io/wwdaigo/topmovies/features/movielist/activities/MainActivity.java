@@ -5,6 +5,8 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import javax.inject.Inject;
 
@@ -60,4 +62,53 @@ public class MainActivity extends Activity implements HasFragmentInjector, OnMov
                 }
         }
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_main_popular:
+
+                return true;
+
+            case R.id.menu_main_top_rated:
+
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 }
+
+/*
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu!!)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+
+        when (item?.itemId) {
+
+            R.id.menu_main_popular -> {
+                viewModel.inputs.getPopular()
+                return true
+            }
+
+            R.id.menu_main_top_rated -> {
+                viewModel.inputs.getTopRated()
+                return true
+            }
+
+            else -> return super.onOptionsItemSelected(item)
+
+        }
+    }
+ */
