@@ -19,6 +19,8 @@ import javax.inject.Inject;
 
 import dagger.android.AndroidInjection;
 import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.wwdaigo.topmovies.R;
 import io.wwdaigo.topmovies.databinding.FragmentMovieListBinding;
@@ -33,7 +35,8 @@ public class MovieListFragment extends Fragment {
     @Inject
     MovieListAdapter movieListAdapter;
 
-    FragmentMovieListBinding binding;
+    private FragmentMovieListBinding binding;
+    private CompositeDisposable disposable;
 
     private OnMovieListFragmentInteraction mListener;
 
@@ -49,14 +52,6 @@ public class MovieListFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        viewModel.getOutputs().isLoading().subscribe(new Consumer<Boolean>() {
-            @Override
-            public void accept(@NonNull Boolean aBoolean) throws Exception {
-                Log.i("ISSS", ""+ aBoolean);
-            }
-        });
-
     }
 
     @Override
@@ -83,12 +78,27 @@ public class MovieListFragment extends Fragment {
             throw new RuntimeException(context.toString()
                     + " must implement OnMovieListFragmentInteraction");
         }
+
+        disposable = new CompositeDisposable();
+        bindOutputs();
     }
 
     @Override
-    public void onDetach() {
-        super.onDetach();
+    public void onDestroy() {
+        super.onDestroy();
         mListener = null;
+        disposable.clear();
+    }
+
+    private void bindOutputs() {
+        Disposable loadingDisposable = viewModel.getOutputs().isLoading().subscribe(new Consumer<Boolean>() {
+            @Override
+            public void accept(@NonNull Boolean isLoading) throws Exception {
+                mListener.toggleLoadingMode(isLoading);
+            }
+        });
+
+        disposable.addAll(loadingDisposable);
     }
 
     private void bindMovieListRecyclerView() {

@@ -15,4 +15,8 @@ public final class Constants {
         public static final String IMAGE_URL = "http://image.tmdb.org/t/p/";
         public static final String COVER_WIDTH = "w780";
     }
+
+    public final class FragmentTags {
+        public static final String LOADING_FRAGMENT_TAG = "loadingFragmentTag";
+    }
 }

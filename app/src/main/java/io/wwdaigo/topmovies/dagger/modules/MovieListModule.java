@@ -7,6 +7,7 @@ import dagger.Provides;
 import dagger.android.ContributesAndroidInjector;
 import io.wwdaigo.topmovies.features.movielist.activities.MainActivity;
 import io.wwdaigo.topmovies.features.movielist.adapters.MovieListAdapter;
+import io.wwdaigo.topmovies.features.movielist.fragments.LoadingFragment;
 import io.wwdaigo.topmovies.features.movielist.fragments.MovieListFragment;
 import io.wwdaigo.topmovies.features.movielist.viewmodels.MovieListViewModel;
 import io.wwdaigo.topmovies.features.movielist.viewmodels.MovieListViewModelType;

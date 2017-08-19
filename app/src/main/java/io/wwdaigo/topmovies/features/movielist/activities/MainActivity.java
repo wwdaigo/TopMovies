@@ -2,6 +2,7 @@ package io.wwdaigo.topmovies.features.movielist.activities;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 
@@ -12,8 +13,11 @@ import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasFragmentInjector;
 import io.wwdaigo.topmovies.R;
+import io.wwdaigo.topmovies.features.movielist.fragments.LoadingFragment;
 import io.wwdaigo.topmovies.features.movielist.fragments.MovieListFragment;
 import io.wwdaigo.topmovies.features.movielist.fragments.OnMovieListFragmentInteraction;
+
+import static io.wwdaigo.topmovies.commons.Constants.FragmentTags.LOADING_FRAGMENT_TAG;
 
 public class MainActivity extends Activity implements HasFragmentInjector, OnMovieListFragmentInteraction {
 
@@ -29,11 +33,31 @@ public class MainActivity extends Activity implements HasFragmentInjector, OnMov
 
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.main_fragment_container, MovieListFragment.newInstance());
-        transaction.commitAllowingStateLoss();
+        transaction.commit();
     }
 
     @Override
     public AndroidInjector<Fragment> fragmentInjector() {
         return fragmentInjector;
+    }
+
+    @Override
+    public void toggleLoadingMode(boolean loading) {
+
+        FragmentManager manager = getFragmentManager();
+            FragmentTransaction transaction = manager.beginTransaction();
+
+            if (loading) {
+                transaction.add(R.id.main_fragment_container,
+                        LoadingFragment.newInstance(),
+                        LOADING_FRAGMENT_TAG)
+                        .commit();
+            } else {
+                LoadingFragment fragment = (LoadingFragment) manager.findFragmentByTag(LOADING_FRAGMENT_TAG);
+                if (fragment != null) {
+                    transaction.remove(fragment)
+                            .commit();
+                }
+        }
     }
 }
