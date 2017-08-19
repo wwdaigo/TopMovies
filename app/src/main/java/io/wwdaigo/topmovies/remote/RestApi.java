@@ -45,4 +45,8 @@ public class RestApi {
             return chain.proceed(request);
         }
     }
+
+    public Retrofit getRetrofit() {
+        return retrofit;
+    }
 }
