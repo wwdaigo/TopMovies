@@ -2,6 +2,11 @@ package io.wwdaigo.topmovies.data;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Date;
+
+import io.wwdaigo.topmovies.commons.DateFormats;
+import io.wwdaigo.topmovies.commons.Utils;
+
 import static io.wwdaigo.topmovies.commons.Constants.Image.COVER_WIDTH;
 import static io.wwdaigo.topmovies.commons.Constants.Image.IMAGE_URL;
 
@@ -17,7 +22,7 @@ public final class MovieData {
     private String overview;
     private boolean adult;
     @SerializedName("release_date")
-    private String releaseDate;
+    private Date releaseDate;
     @SerializedName("original_language")
     private String originalLanguage;
     @SerializedName("vote_count")
@@ -51,7 +56,7 @@ public final class MovieData {
         return adult;
     }
 
-    public String getReleaseDate() {
+    public Date getReleaseDate() {
         return releaseDate;
     }
 
@@ -81,5 +86,9 @@ public final class MovieData {
 
     public float getVoteAverage() {
         return voteAverage;
+    }
+
+    public String getYear() {
+        return Utils.dateToString(releaseDate, DateFormats.YEAR);
     }
 }

@@ -60,7 +60,7 @@
                         android:layout_below="@id/movie_name_text_view"
                         android:textColor="@android:color/white"
                         android:textSize="12sp"
-                        android:text="@{movieData.releaseDate}"
+                        android:text="@{movieData.year}"
                         tools:text = "2017"
                         />
 
