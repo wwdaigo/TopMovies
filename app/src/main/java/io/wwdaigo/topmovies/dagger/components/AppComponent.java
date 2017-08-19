@@ -4,11 +4,8 @@ import dagger.Component;
 import dagger.android.AndroidInjectionModule;
 import dagger.android.AndroidInjector;
 import io.wwdaigo.topmovies.commons.App;
-import io.wwdaigo.topmovies.dagger.modules.ActivityModule;
-import io.wwdaigo.topmovies.dagger.modules.ApiModule;
-import io.wwdaigo.topmovies.dagger.modules.ManagerModule;
-import io.wwdaigo.topmovies.dagger.modules.ViewModelModule;
-import io.wwdaigo.topmovies.features.movielist.fragments.MovieListFragment;
+import io.wwdaigo.topmovies.dagger.modules.MovieListModule;
+import io.wwdaigo.topmovies.dagger.modules.RemoteModule;
 
 /**
  * Created by daigomatsuoka on 19/08/17.
@@ -16,9 +13,7 @@ import io.wwdaigo.topmovies.features.movielist.fragments.MovieListFragment;
 
 @Component(modules = {
         AndroidInjectionModule.class,
-        ActivityModule.class,
-        ApiModule.class,
-        ManagerModule.class,
-        ViewModelModule.class})
+        MovieListModule.class,
+        RemoteModule.class})
 public interface AppComponent extends AndroidInjector<App> {
 }
