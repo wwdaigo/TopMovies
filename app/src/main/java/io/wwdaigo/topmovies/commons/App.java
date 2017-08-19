@@ -8,8 +8,7 @@ import javax.inject.Inject;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasActivityInjector;
-import io.wwdaigo.topmovies.dagger.components.DaggerActivityComponent;
-import io.wwdaigo.topmovies.dagger.components.DaggerApiComponent;
+import io.wwdaigo.topmovies.dagger.components.DaggerAppComponent;
 
 /**
  * Created by daigomatsuoka on 18/08/17.
@@ -24,8 +23,7 @@ public class App extends Application implements HasActivityInjector {
     public void onCreate() {
         super.onCreate();
 
-        DaggerApiComponent.create().inject(this);
-        DaggerActivityComponent.create().inject(this);
+        DaggerAppComponent.create().inject(this);
     }
 
     @Override
