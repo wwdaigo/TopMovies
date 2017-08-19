@@ -20,6 +20,7 @@ import io.wwdaigo.topmovies.features.movielist.fragments.MovieListFragment;
 import io.wwdaigo.topmovies.features.movielist.fragments.OnMovieListFragmentInteraction;
 
 import static io.wwdaigo.topmovies.commons.Constants.FragmentTags.LOADING_FRAGMENT_TAG;
+import static io.wwdaigo.topmovies.commons.Constants.FragmentTags.MOVIES_FRAGMENT_TAG;
 
 public class MainActivity extends Activity implements HasFragmentInjector, OnMovieListFragmentInteraction {
 
@@ -34,7 +35,7 @@ public class MainActivity extends Activity implements HasFragmentInjector, OnMov
         setContentView(R.layout.activity_main);
 
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.main_fragment_container, MovieListFragment.newInstance());
+        transaction.replace(R.id.main_fragment_container, MovieListFragment.newInstance(), MOVIES_FRAGMENT_TAG);
         transaction.commit();
     }
 
@@ -47,19 +48,18 @@ public class MainActivity extends Activity implements HasFragmentInjector, OnMov
     public void toggleLoadingMode(boolean loading) {
 
         FragmentManager manager = getFragmentManager();
-            FragmentTransaction transaction = manager.beginTransaction();
+        FragmentTransaction transaction = manager.beginTransaction();
 
-            if (loading) {
-                transaction.add(R.id.main_fragment_container,
+        if (loading) {
+            transaction.add(R.id.main_fragment_container,
                         LoadingFragment.newInstance(),
                         LOADING_FRAGMENT_TAG)
                         .commit();
-            } else {
-                LoadingFragment fragment = (LoadingFragment) manager.findFragmentByTag(LOADING_FRAGMENT_TAG);
-                if (fragment != null) {
-                    transaction.remove(fragment)
-                            .commit();
-                }
+        } else {
+            LoadingFragment fragment = (LoadingFragment) manager.findFragmentByTag(LOADING_FRAGMENT_TAG);
+            if (fragment != null) {
+                transaction.remove(fragment).commit();
+            }
         }
     }
 
@@ -71,44 +71,17 @@ public class MainActivity extends Activity implements HasFragmentInjector, OnMov
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_main_popular:
+        postMenuOptionToFragment(item.getItemId());
+        return true;
+    }
 
-                return true;
+    private void postMenuOptionToFragment(int optionId) {
 
-            case R.id.menu_main_top_rated:
+        FragmentManager manager = getFragmentManager();
 
-                return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
+        MovieListFragment movieListFragment = (MovieListFragment) manager.findFragmentByTag(MOVIES_FRAGMENT_TAG);
+        if (movieListFragment != null) {
+            movieListFragment.toggleList(optionId);
         }
     }
 }
-
-/*
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_main, menu!!)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-
-        when (item?.itemId) {
-
-            R.id.menu_main_popular -> {
-                viewModel.inputs.getPopular()
-                return true
-            }
-
-            R.id.menu_main_top_rated -> {
-                viewModel.inputs.getTopRated()
-                return true
-            }
-
-            else -> return super.onOptionsItemSelected(item)
-
-        }
-    }
- */

@@ -6,4 +6,5 @@
 
     <color name="background_movie_stripe">#99000000</color>
     <color name="loading_text">#CCCCCC</color>
+    <color name="demi_white">#DDFFFFFF</color>
 </resources>

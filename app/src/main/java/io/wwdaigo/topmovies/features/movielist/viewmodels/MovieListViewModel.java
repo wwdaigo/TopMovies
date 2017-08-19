@@ -54,7 +54,27 @@ public class MovieListViewModel implements MovieListViewModelType, MovieListView
     /* INPUTS */
 
     @Override
-    public void loadMovies() {
+    public void loadTopRatedMovies() {
+        isLoadingPublish.onNext(true);
+
+        moviesManager.getTopRated()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<Result<BaseResponse<MovieData>>>() {
+                    @Override
+                    public void accept(@NonNull Result<BaseResponse<MovieData>> baseResponseResult) throws Exception {
+
+                        isLoadingPublish.onNext(false);
+
+                        MovieListViewModel.this.listMovieDataPublish.onNext(
+                                baseResponseResult.response().body().getResults()
+                        );
+                    }
+                });
+    }
+
+    @Override
+    public void loadMostPopularMovies() {
         isLoadingPublish.onNext(true);
 
         moviesManager.getPopular()
