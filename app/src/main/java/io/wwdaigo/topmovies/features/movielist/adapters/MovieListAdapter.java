@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -25,10 +26,9 @@ import io.wwdaigo.topmovies.databinding.MovieListCardItemBinding;
 public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.MovieItemViewHolder> {
 
     private List<MovieData> movieDataList;
-    private Observable<List<MovieData>> observableMovieDataList;
 
-    public MovieListAdapter(Observable<List<MovieData>> observableMovieDataList) {
-        this.observableMovieDataList = observableMovieDataList;
+    public void setObservableList(Observable<List<MovieData>> observableMovieDataList) {
+
         movieDataList = new ArrayList<>();
         observableMovieDataList
                 .observeOn(AndroidSchedulers.mainThread())
@@ -41,6 +41,8 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
                 });
 
     }
+
+
 
     @Override
     public MovieItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -76,7 +78,18 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
             binding.setMovieData(movieData);
             Picasso.with(binding.getRoot().getContext())
                     .load(movieData.getPosterPath())
-                    .into(binding.movieCoverImage);
+                    .into(binding.movieCoverImage, new Callback() {
+                        @Override
+                        public void onSuccess() {
+                            binding.loadingImageProgressBar.setVisibility(View.GONE);
+                        }
+
+                        @Override
+                        public void onError() {
+                            binding.movieCoverImage.setImageResource(R.drawable.error);
+                            binding.loadingImageProgressBar.setVisibility(View.GONE);
+                        }
+                    });
         }
     }
 }
