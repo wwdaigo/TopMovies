@@ -1,9 +1,11 @@
 package io.wwdaigo.topmovies.features.movielist.fragments;
 
 import android.content.Context;
+import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,12 +17,16 @@ import dagger.android.AndroidInjection;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Consumer;
 import io.wwdaigo.topmovies.R;
+import io.wwdaigo.topmovies.databinding.FragmentMovieListBinding;
+import io.wwdaigo.topmovies.features.movielist.adapters.MovieListAdapter;
 import io.wwdaigo.topmovies.features.movielist.viewmodels.MovieListViewModelType;
 
 public class MovieListFragment extends Fragment {
 
     @Inject
     MovieListViewModelType viewModel;
+
+    FragmentMovieListBinding binding;
 
     private OnMovieListFragmentInteraction mListener;
 
@@ -43,14 +49,20 @@ public class MovieListFragment extends Fragment {
                 Log.i("ISSS", ""+ aBoolean);
             }
         });
-        viewModel.getInputs().loadMovies();
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_movie_list, container, false);
+
+        binding = DataBindingUtil.inflate(
+                inflater, R.layout.fragment_movie_list, container, false);
+
+        bindMovieListRecyclerView();
+        viewModel.getInputs().loadMovies();
+
+        return binding.getRoot();
     }
 
     @Override
@@ -72,4 +84,12 @@ public class MovieListFragment extends Fragment {
         mListener = null;
     }
 
+    private void bindMovieListRecyclerView() {
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        MovieListAdapter movieListAdapter = new MovieListAdapter(viewModel.getOutputs().listMovieData());
+
+        binding.movieListRecyclerView.setHasFixedSize(true);
+        binding.movieListRecyclerView.setLayoutManager(linearLayoutManager);
+        binding.movieListRecyclerView.setAdapter(movieListAdapter);
+    }
 }

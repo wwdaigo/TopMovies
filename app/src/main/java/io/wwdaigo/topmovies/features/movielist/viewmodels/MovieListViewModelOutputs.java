@@ -1,5 +1,7 @@
 package io.wwdaigo.topmovies.features.movielist.viewmodels;
 
+import java.util.List;
+
 import io.reactivex.Observable;
 import io.wwdaigo.topmovies.data.MovieData;
 
@@ -9,5 +11,5 @@ import io.wwdaigo.topmovies.data.MovieData;
 
 public interface MovieListViewModelOutputs {
     Observable<Boolean> isLoading();
-    Observable<MovieData> getMovieData();
+    Observable<List<MovieData>> listMovieData();
 }

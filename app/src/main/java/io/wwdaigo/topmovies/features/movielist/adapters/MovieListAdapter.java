@@ -25,7 +25,8 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
     private List<MovieData> movieDataList;
     private Observable<List<MovieData>> observableMovieDataList;
 
-    public MovieListAdapter() {
+    public MovieListAdapter(Observable<List<MovieData>> observableMovieDataList) {
+        this.observableMovieDataList = observableMovieDataList;
         movieDataList = new ArrayList<>();
         observableMovieDataList
                 .observeOn(AndroidSchedulers.mainThread())
