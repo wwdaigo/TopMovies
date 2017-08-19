@@ -1,0 +1,42 @@
+[
+    {
+        "merged": "/Users/daigomatsuoka/Documents/TopMovies/data/build/intermediates/res/merged/androidTest/debug/anim/abc_grow_fade_in_from_bottom.xml",
+        "source": "/Users/daigomatsuoka/.android/build-cache/afc6794b6a310d68c58753963e5600874c97443e/output/res/anim/abc_grow_fade_in_from_bottom.xml"
+    },
+    {
+        "merged": "/Users/daigomatsuoka/Documents/TopMovies/data/build/intermediates/res/merged/androidTest/debug/anim/abc_slide_out_top.xml",
+        "source": "/Users/daigomatsuoka/.android/build-cache/afc6794b6a310d68c58753963e5600874c97443e/output/res/anim/abc_slide_out_top.xml"
+    },
+    {
+        "merged": "/Users/daigomatsuoka/Documents/TopMovies/data/build/intermediates/res/merged/androidTest/debug/anim/abc_fade_out.xml",
+        "source": "/Users/daigomatsuoka/.android/build-cache/afc6794b6a310d68c58753963e5600874c97443e/output/res/anim/abc_fade_out.xml"
+    },
+    {
+        "merged": "/Users/daigomatsuoka/Documents/TopMovies/data/build/intermediates/res/merged/androidTest/debug/anim/abc_slide_out_bottom.xml",
+        "source": "/Users/daigomatsuoka/.android/build-cache/afc6794b6a310d68c58753963e5600874c97443e/output/res/anim/abc_slide_out_bottom.xml"
+    },
+    {
+        "merged": "/Users/daigomatsuoka/Documents/TopMovies/data/build/intermediates/res/merged/androidTest/debug/anim/abc_popup_enter.xml",
+        "source": "/Users/daigomatsuoka/.android/build-cache/afc6794b6a310d68c58753963e5600874c97443e/output/res/anim/abc_popup_enter.xml"
+    },
+    {
+        "merged": "/Users/daigomatsuoka/Documents/TopMovies/data/build/intermediates/res/merged/androidTest/debug/anim/abc_slide_in_bottom.xml",
+        "source": "/Users/daigomatsuoka/.android/build-cache/afc6794b6a310d68c58753963e5600874c97443e/output/res/anim/abc_slide_in_bottom.xml"
+    },
+    {
+        "merged": "/Users/daigomatsuoka/Documents/TopMovies/data/build/intermediates/res/merged/androidTest/debug/anim/abc_popup_exit.xml",
+        "source": "/Users/daigomatsuoka/.android/build-cache/afc6794b6a310d68c58753963e5600874c97443e/output/res/anim/abc_popup_exit.xml"
+    },
+    {
+        "merged": "/Users/daigomatsuoka/Documents/TopMovies/data/build/intermediates/res/merged/androidTest/debug/anim/abc_shrink_fade_out_from_bottom.xml",
+        "source": "/Users/daigomatsuoka/.android/build-cache/afc6794b6a310d68c58753963e5600874c97443e/output/res/anim/abc_shrink_fade_out_from_bottom.xml"
+    },
+    {
+        "merged": "/Users/daigomatsuoka/Documents/TopMovies/data/build/intermediates/res/merged/androidTest/debug/anim/abc_fade_in.xml",
+        "source": "/Users/daigomatsuoka/.android/build-cache/afc6794b6a310d68c58753963e5600874c97443e/output/res/anim/abc_fade_in.xml"
+    },
+    {
+        "merged": "/Users/daigomatsuoka/Documents/TopMovies/data/build/intermediates/res/merged/androidTest/debug/anim/abc_slide_in_top.xml",
+        "source": "/Users/daigomatsuoka/.android/build-cache/afc6794b6a310d68c58753963e5600874c97443e/output/res/anim/abc_slide_in_top.xml"
+    }
+]

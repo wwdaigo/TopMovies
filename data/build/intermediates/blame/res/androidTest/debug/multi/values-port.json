@@ -1,0 +1,26 @@
+[
+    {
+        "outputFile": "/Users/daigomatsuoka/Documents/TopMovies/data/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values-port/values-port.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 55,
+                    "endOffset": 106
+                },
+                "from": {
+                    "file": "/Users/daigomatsuoka/.android/build-cache/afc6794b6a310d68c58753963e5600874c97443e/output/res/values-port/values-port.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 55,
+                        "endOffset": 106
+                    }
+                }
+            }
+        ]
+    }
+]
