@@ -1,8 +1,15 @@
 package io.wwdaigo.topmovies.remote;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import io.wwdaigo.topmovies.BuildConfig;
+import io.wwdaigo.topmovies.commons.Constants;
+import okhttp3.HttpUrl;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -25,4 +32,15 @@ public class RestApi {
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build();
+
+    private class RestInterceptor implements Interceptor {
+
+        @Override
+        public Response intercept(Chain chain) throws IOException {
+            Request request = chain.request();
+            HttpUrl url = request.url().newBuilder().addQueryParameter(Constants.Remote.API_PARAM, BuildConfig.API_KEY).build();
+            request = request.newBuilder().url(url).build();
+            return chain.proceed(request);
+        }
+    }
 }
