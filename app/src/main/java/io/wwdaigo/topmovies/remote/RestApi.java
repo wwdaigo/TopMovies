@@ -14,13 +14,14 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static io.wwdaigo.topmovies.commons.Constants.Remote.TIMEOUT;
+
 /**
  * Created by daigomatsuoka on 19/08/17.
  */
 
 public class RestApi {
 
-    private static final int TIMEOUT = 60;
 
     private OkHttpClient okHttpClient = new OkHttpClient.Builder()
             .readTimeout(TIMEOUT, TimeUnit.SECONDS)
