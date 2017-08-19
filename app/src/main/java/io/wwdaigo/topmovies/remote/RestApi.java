@@ -3,8 +3,6 @@ package io.wwdaigo.topmovies.remote;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import javax.inject.Inject;
-
 import io.wwdaigo.topmovies.BuildConfig;
 import io.wwdaigo.topmovies.commons.Constants;
 import io.wwdaigo.topmovies.remote.request.MoviesRequest;

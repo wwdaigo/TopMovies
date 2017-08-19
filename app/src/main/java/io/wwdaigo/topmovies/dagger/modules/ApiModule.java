@@ -1,7 +1,5 @@
 package io.wwdaigo.topmovies.dagger.modules;
 
-import javax.inject.Named;
-
 import dagger.Module;
 import dagger.Provides;
 import io.wwdaigo.topmovies.remote.RestApi;
