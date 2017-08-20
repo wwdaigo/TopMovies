@@ -54,7 +54,7 @@ public class DetailsActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-        setTitle(movieData.getTitle());
+        setTitle("");
     }
 
     private void setupBackdropImage() {

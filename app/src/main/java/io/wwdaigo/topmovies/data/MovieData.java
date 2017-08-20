@@ -54,18 +54,6 @@ public final class MovieData implements Serializable {
         return overview;
     }
 
-    public boolean isAdult() {
-        return adult;
-    }
-
-    public String getOriginalLanguage() {
-        return originalLanguage;
-    }
-
-    public int getVoteCount() {
-        return voteCount;
-    }
-
     public String getPosterPath() {
         return String.format("%s%s%s", IMAGE_URL, COVER_WIDTH, posterPath);
     }
@@ -74,16 +62,8 @@ public final class MovieData implements Serializable {
         return String.format("%s%s%s", IMAGE_URL, COVER_WIDTH, backdropPath);
     }
 
-    public boolean hasVideo() {
-        return video;
-    }
-
     public float getPopularity() {
         return popularity;
-    }
-
-    public float getVoteAverage() {
-        return voteAverage;
     }
 
     public String getYear() {
@@ -95,6 +75,6 @@ public final class MovieData implements Serializable {
     }
 
     public String getFormatedVote() {
-        return String.format(Locale.getDefault(), "(%d) %.1f", voteCount, voteAverage);
+        return String.format(Locale.getDefault(), "(%d) %.1f/10", voteCount, voteAverage);
     }
 }
