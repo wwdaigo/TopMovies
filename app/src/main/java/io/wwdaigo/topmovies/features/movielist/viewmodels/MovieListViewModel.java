@@ -27,9 +27,7 @@ import retrofit2.adapter.rxjava2.Result;
 
 public class MovieListViewModel implements MovieListViewModelType, MovieListViewModelInputs, MovieListViewModelOutputs {
 
-    @Inject
-    PreferencesManagerType preferencesManager;
-
+    private PreferencesManagerType preferencesManager;
     private MoviesManager moviesManager;
 
     private PublishSubject<Boolean> isLoadingPublish;
@@ -41,9 +39,10 @@ public class MovieListViewModel implements MovieListViewModelType, MovieListView
     private PublishSubject<Integer> titleStringResourcePublish;
     private Observable<Integer> titleStringResource;
 
-    public MovieListViewModel(MoviesManager moviesManager) {
+    public MovieListViewModel(MoviesManager moviesManager, PreferencesManagerType preferencesManager) {
 
         this.moviesManager = moviesManager;
+        this.preferencesManager = preferencesManager;
 
         isLoadingPublish = PublishSubject.create();
         isLoading = isLoadingPublish;

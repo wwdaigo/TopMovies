@@ -7,6 +7,8 @@ import io.wwdaigo.topmovies.commons.App;
 import io.wwdaigo.topmovies.dagger.modules.AppModule;
 import io.wwdaigo.topmovies.dagger.modules.MovieListModule;
 import io.wwdaigo.topmovies.dagger.modules.RemoteModule;
+import io.wwdaigo.topmovies.features.movielist.viewmodels.MovieListViewModelType;
+import io.wwdaigo.topmovies.preferences.PreferencesManagerType;
 
 /**
  * Created by daigomatsuoka on 19/08/17.
