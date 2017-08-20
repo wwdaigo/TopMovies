@@ -1,6 +1,7 @@
 package io.wwdaigo.topmovies.features.details.fragments;
 
 
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -9,11 +10,14 @@ import android.view.ViewGroup;
 
 import io.wwdaigo.topmovies.R;
 import io.wwdaigo.topmovies.data.MovieData;
+import io.wwdaigo.topmovies.databinding.FragmentDetailsBinding;
 
 public class DetailsFragment extends Fragment {
 
     private static final String ARG_MOVIE_DATA = "movieData";
     private MovieData movieData;
+
+    private FragmentDetailsBinding binding;
 
     public DetailsFragment() {
         // Required empty public constructor
@@ -39,7 +43,13 @@ public class DetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_details, container, false);
+        binding = DataBindingUtil.inflate(
+                inflater, R.layout.fragment_details, container, false);
+
+        if (movieData != null)
+            binding.setMovieData(movieData);
+
+        return binding.getRoot();
     }
 
 }
