@@ -14,10 +14,8 @@ import io.wwdaigo.topmovies.R;
 import io.wwdaigo.topmovies.data.MovieData;
 import io.wwdaigo.topmovies.databinding.ActivityDetailsBinding;
 import io.wwdaigo.topmovies.features.details.fragments.DetailsFragment;
-import io.wwdaigo.topmovies.features.movielist.fragments.MovieListFragment;
 
 import static io.wwdaigo.topmovies.commons.Constants.FragmentTags.DETAILS_FRAGMENT_TAG;
-import static io.wwdaigo.topmovies.commons.Constants.FragmentTags.MOVIES_FRAGMENT_TAG;
 
 public class DetailsActivity extends AppCompatActivity {
 
