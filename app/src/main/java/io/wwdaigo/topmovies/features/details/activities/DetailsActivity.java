@@ -1,6 +1,5 @@
-package io.wwdaigo.topmovies.features.details;
+package io.wwdaigo.topmovies.features.details.activities;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -9,8 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
-
-import javax.inject.Inject;
 
 import io.wwdaigo.topmovies.R;
 import io.wwdaigo.topmovies.data.MovieData;

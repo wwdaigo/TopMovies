@@ -3,7 +3,7 @@ package io.wwdaigo.topmovies.router;
 import android.content.Context;
 
 import io.wwdaigo.topmovies.data.MovieData;
-import io.wwdaigo.topmovies.features.details.DetailsActivity;
+import io.wwdaigo.topmovies.features.details.activities.DetailsActivity;
 
 /**
  * Created by daigomatsuoka on 20/08/17.
