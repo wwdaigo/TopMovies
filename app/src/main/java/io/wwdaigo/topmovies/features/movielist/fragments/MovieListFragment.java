@@ -64,7 +64,7 @@ public class MovieListFragment extends Fragment implements OnSelectMovieData {
                 inflater, R.layout.fragment_movie_list, container, false);
 
         bindMovieListRecyclerView();
-        viewModel.getInputs().loadSavedOption(getActivity());
+        loadSavedOption();
 
         return binding.getRoot();
     }
@@ -90,6 +90,10 @@ public class MovieListFragment extends Fragment implements OnSelectMovieData {
         super.onDestroy();
         mListener = null;
         disposable.clear();
+    }
+
+    public void loadSavedOption() {
+        viewModel.getInputs().loadSavedOption(getActivity());
     }
 
     private void bindOutputs() {

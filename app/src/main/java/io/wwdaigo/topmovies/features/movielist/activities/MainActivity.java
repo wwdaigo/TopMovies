@@ -18,14 +18,20 @@ import dagger.android.HasFragmentInjector;
 import io.wwdaigo.topmovies.R;
 import io.wwdaigo.topmovies.data.MovieData;
 import io.wwdaigo.topmovies.features.movielist.adapters.OnSelectMovieData;
+import io.wwdaigo.topmovies.features.movielist.fragments.ErrorFragment;
 import io.wwdaigo.topmovies.features.movielist.fragments.LoadingFragment;
 import io.wwdaigo.topmovies.features.movielist.fragments.MovieListFragment;
+import io.wwdaigo.topmovies.features.movielist.fragments.OnErrorFragmentInteraction;
 import io.wwdaigo.topmovies.features.movielist.fragments.OnMovieListFragmentInteraction;
 
+import static io.wwdaigo.topmovies.commons.Constants.FragmentTags.ERROR_FRAGMENT_TAG;
 import static io.wwdaigo.topmovies.commons.Constants.FragmentTags.LOADING_FRAGMENT_TAG;
 import static io.wwdaigo.topmovies.commons.Constants.FragmentTags.MOVIES_FRAGMENT_TAG;
 
-public class MainActivity extends Activity implements HasFragmentInjector, OnMovieListFragmentInteraction {
+public class MainActivity extends Activity implements
+        HasFragmentInjector,
+        OnMovieListFragmentInteraction,
+        OnErrorFragmentInteraction {
 
     @Inject
     DispatchingAndroidInjector<Fragment> fragmentInjector;
@@ -67,6 +73,16 @@ public class MainActivity extends Activity implements HasFragmentInjector, OnMov
     }
 
     @Override
+    public void showError() {
+        FragmentManager manager = getFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.add(R.id.main_fragment_container,
+                ErrorFragment.newInstance(),
+                ERROR_FRAGMENT_TAG)
+                .commit();
+    }
+
+    @Override
     public void setActivityTitle(int resId) {
         this.setTitle(resId);
     }
@@ -83,14 +99,33 @@ public class MainActivity extends Activity implements HasFragmentInjector, OnMov
         return true;
     }
 
-    private void postMenuOptionToFragment(int optionId) {
-
+    private MovieListFragment getMovieListFragment() {
         FragmentManager manager = getFragmentManager();
+        return (MovieListFragment) manager.findFragmentByTag(MOVIES_FRAGMENT_TAG);
+    }
 
-        MovieListFragment movieListFragment = (MovieListFragment) manager.findFragmentByTag(MOVIES_FRAGMENT_TAG);
+    private void postMenuOptionToFragment(int optionId) {
+        MovieListFragment movieListFragment = getMovieListFragment();
+
         if (movieListFragment != null) {
             movieListFragment.toggleList(optionId);
         }
     }
 
+    @Override
+    public void retryAction() {
+        FragmentManager manager = getFragmentManager();
+        ErrorFragment errorFragment = (ErrorFragment) manager.findFragmentByTag(ERROR_FRAGMENT_TAG);
+        if (errorFragment != null) {
+            manager.beginTransaction()
+                    .remove(errorFragment)
+                    .commit();
+        }
+
+        MovieListFragment movieListFragment = getMovieListFragment();
+
+        if (movieListFragment != null) {
+            movieListFragment.loadSavedOption();
+        }
+    }
 }

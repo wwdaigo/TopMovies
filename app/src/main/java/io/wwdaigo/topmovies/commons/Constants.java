@@ -23,6 +23,7 @@ public final class Constants {
     public final class FragmentTags {
         public static final String MOVIES_FRAGMENT_TAG = "moviesFragmentTag";
         public static final String LOADING_FRAGMENT_TAG = "loadingFragmentTag";
+        public static final String ERROR_FRAGMENT_TAG = "errorFragmentTag";
         public static final String DETAILS_FRAGMENT_TAG = "detailsFragmentTag";
     }
 
