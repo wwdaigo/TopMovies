@@ -11,6 +11,7 @@ import io.wwdaigo.topmovies.data.MovieData;
 
 public interface MovieListViewModelOutputs {
     Observable<Boolean> isLoading();
+    Observable<Boolean> hasError();
     Observable<List<MovieData>> listMovieData();
     Observable<Integer> getTitleStringResource();
 }

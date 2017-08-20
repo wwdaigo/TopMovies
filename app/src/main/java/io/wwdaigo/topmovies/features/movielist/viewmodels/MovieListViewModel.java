@@ -33,6 +33,9 @@ public class MovieListViewModel implements MovieListViewModelType, MovieListView
     private PublishSubject<Boolean> isLoadingPublish;
     private Observable<Boolean> isLoading;
 
+    private PublishSubject<Boolean> hasErrorPublish;
+    private Observable<Boolean> hasError;
+
     private PublishSubject<List<MovieData>> listMovieDataPublish;
     private Observable<List<MovieData>> listMovieData;
 
@@ -46,6 +49,9 @@ public class MovieListViewModel implements MovieListViewModelType, MovieListView
 
         isLoadingPublish = PublishSubject.create();
         isLoading = isLoadingPublish;
+
+        hasErrorPublish = PublishSubject.create();
+        hasError = hasErrorPublish;
 
         listMovieDataPublish = PublishSubject.create();
         listMovieData = listMovieDataPublish;
@@ -95,12 +101,8 @@ public class MovieListViewModel implements MovieListViewModelType, MovieListView
                 .subscribe(new Consumer<Result<BaseResponse<MovieData>>>() {
                     @Override
                     public void accept(@NonNull Result<BaseResponse<MovieData>> baseResponseResult) throws Exception {
-                        isLoadingPublish.onNext(false);
                         titleStringResourcePublish.onNext(R.string.top_rated_movies);
-
-                        MovieListViewModel.this.listMovieDataPublish.onNext(
-                                baseResponseResult.response().body().getResults()
-                        );
+                        handleResponse(baseResponseResult);
                     }
                 });
     }
@@ -115,15 +117,23 @@ public class MovieListViewModel implements MovieListViewModelType, MovieListView
                 .subscribe(new Consumer<Result<BaseResponse<MovieData>>>() {
                     @Override
                     public void accept(@NonNull Result<BaseResponse<MovieData>> baseResponseResult) throws Exception {
-
-                        isLoadingPublish.onNext(false);
                         titleStringResourcePublish.onNext(R.string.popular_movies);
-
-                        MovieListViewModel.this.listMovieDataPublish.onNext(
-                                baseResponseResult.response().body().getResults()
-                        );
+                        handleResponse(baseResponseResult);
                     }
                 });
+    }
+
+    private void handleResponse(Result<BaseResponse<MovieData>> baseResponseResult) {
+        isLoadingPublish.onNext(false);
+
+        if (baseResponseResult.error() != null || !baseResponseResult.response().isSuccessful()) {
+            MovieListViewModel.this.hasErrorPublish.onNext(true);
+        } else {
+            MovieListViewModel.this.hasErrorPublish.onNext(false);
+            MovieListViewModel.this.listMovieDataPublish.onNext(
+                    baseResponseResult.response().body().getResults()
+            );
+        }
     }
 
     /* OUTPUTS */
@@ -131,6 +141,11 @@ public class MovieListViewModel implements MovieListViewModelType, MovieListView
     @Override
     public Observable<Boolean> isLoading() {
         return isLoading;
+    }
+
+    @Override
+    public Observable<Boolean> hasError() {
+        return hasError;
     }
 
     @Override
