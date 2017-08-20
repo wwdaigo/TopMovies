@@ -6,6 +6,10 @@ package io.wwdaigo.topmovies.commons;
 
 public final class Constants {
 
+    public final class Preferences {
+        public static final String PREFERENCES_KEY = "topMoviesPreferences";
+    }
+
     public final class Remote {
         public static final String API_PARAM = "api_key";
         public static final int TIMEOUT = 60;
