@@ -64,7 +64,7 @@ public class MovieListFragment extends Fragment implements OnSelectMovieData {
                 inflater, R.layout.fragment_movie_list, container, false);
 
         bindMovieListRecyclerView();
-        viewModel.getInputs().loadTopRatedMovies();
+        viewModel.getInputs().loadSavedOption(getActivity());
 
         return binding.getRoot();
     }
@@ -133,6 +133,8 @@ public class MovieListFragment extends Fragment implements OnSelectMovieData {
     }
 
     public void toggleList(int optionId) {
+
+        viewModel.getInputs().saveOption(getActivity(), optionId);
         switch (optionId) {
             case R.id.menu_main_popular:
                 viewModel.getInputs().loadMostPopularMovies();

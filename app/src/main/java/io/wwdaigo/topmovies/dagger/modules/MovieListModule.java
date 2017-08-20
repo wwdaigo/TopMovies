@@ -11,6 +11,7 @@ import io.wwdaigo.topmovies.features.movielist.fragments.LoadingFragment;
 import io.wwdaigo.topmovies.features.movielist.fragments.MovieListFragment;
 import io.wwdaigo.topmovies.features.movielist.viewmodels.MovieListViewModel;
 import io.wwdaigo.topmovies.features.movielist.viewmodels.MovieListViewModelType;
+import io.wwdaigo.topmovies.preferences.PreferencesManagerType;
 import io.wwdaigo.topmovies.remote.manager.MoviesManager;
 import io.wwdaigo.topmovies.router.MainRouter;
 import io.wwdaigo.topmovies.router.MainRouterType;
@@ -29,8 +30,8 @@ public abstract class MovieListModule {
     abstract MovieListFragment movieListFragmentInjector();
 
     @Provides
-    static MovieListViewModelType providesMovieListViewModel(MoviesManager moviesManager) {
-        return new MovieListViewModel(moviesManager);
+    static MovieListViewModelType providesMovieListViewModel(MoviesManager moviesManager, PreferencesManagerType preferencesManager) {
+        return new MovieListViewModel(moviesManager, preferencesManager);
     }
 
     @Provides
