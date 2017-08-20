@@ -1,5 +1,4 @@
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -8,15 +7,62 @@
             type="io.wwdaigo.topmovies.data.MovieData"/>
     </data>
 
-<FrameLayout
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="@dimen/default_margin"
+    android:orientation="vertical"
     tools:context="io.wwdaigo.topmovies.features.details.fragments.DetailsFragment">
 
     <TextView
+        android:id="@+id/title_text_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:text="@{movieData.title}"
+        tools:text = "English Title"/>
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/original_title_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@{movieData.originalTitle}"
+        tools:text = "Original Title"/>
+
+    <RatingBar
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:isIndicator="true"
+        android:numStars="5"
+        android:rating="@{movieData.popularity}"
+        android:stepSize="0.1" />
+    <TextView
+        android:id="@+id/vote_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@{movieData.formatedVote}"
+        tools:text = "(222) 3.1"/>
+
+    <TextView
+        android:id="@+id/overview_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@{movieData.overview}"
+        tools:text = "Overview"/>
+
+    <TextView
+        android:id="@+id/title_release_date_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/release_date"
+        tools:text="Release date"/>
+
+    <TextView
+        android:id="@+id/release_date_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@{movieData.formatedDate}"
+        tools:text="mm/dd/yyyy"/>
+
+</LinearLayout>
 </layout>

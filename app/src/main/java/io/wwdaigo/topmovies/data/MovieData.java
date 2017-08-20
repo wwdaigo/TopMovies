@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Locale;
 
 import io.wwdaigo.topmovies.commons.DateFormats;
 import io.wwdaigo.topmovies.commons.Utils;
@@ -57,10 +58,6 @@ public final class MovieData implements Serializable {
         return adult;
     }
 
-    public Date getReleaseDate() {
-        return releaseDate;
-    }
-
     public String getOriginalLanguage() {
         return originalLanguage;
     }
@@ -77,7 +74,7 @@ public final class MovieData implements Serializable {
         return String.format("%s%s%s", IMAGE_URL, COVER_WIDTH, backdropPath);
     }
 
-    public boolean isVideo() {
+    public boolean hasVideo() {
         return video;
     }
 
@@ -91,5 +88,13 @@ public final class MovieData implements Serializable {
 
     public String getYear() {
         return Utils.dateToString(releaseDate, DateFormats.YEAR);
+    }
+
+    public String getFormatedDate() {
+        return Utils.dateToString(releaseDate, DateFormats.MM_DD_YYYY);
+    }
+
+    public String getFormatedVote() {
+        return String.format(Locale.getDefault(), "(%d) %.1f", voteCount, voteAverage);
     }
 }

@@ -1,5 +1,6 @@
 package io.wwdaigo.topmovies.features.details.activities;
 
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -12,6 +13,11 @@ import com.squareup.picasso.Picasso;
 import io.wwdaigo.topmovies.R;
 import io.wwdaigo.topmovies.data.MovieData;
 import io.wwdaigo.topmovies.databinding.ActivityDetailsBinding;
+import io.wwdaigo.topmovies.features.details.fragments.DetailsFragment;
+import io.wwdaigo.topmovies.features.movielist.fragments.MovieListFragment;
+
+import static io.wwdaigo.topmovies.commons.Constants.FragmentTags.DETAILS_FRAGMENT_TAG;
+import static io.wwdaigo.topmovies.commons.Constants.FragmentTags.MOVIES_FRAGMENT_TAG;
 
 public class DetailsActivity extends AppCompatActivity {
 
@@ -35,6 +41,7 @@ public class DetailsActivity extends AppCompatActivity {
         getIntentExtas();
         bindToolBar();
         setupBackdropImage();
+        initFragment();
     }
 
     private void getIntentExtas() {
@@ -64,5 +71,11 @@ public class DetailsActivity extends AppCompatActivity {
                         binding.image.setImageResource(R.drawable.error);
                     }
                 });
+    }
+
+    private void initFragment() {
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.details_fragment_container, DetailsFragment.newInstance(movieData), DETAILS_FRAGMENT_TAG);
+        transaction.commit();
     }
 }
