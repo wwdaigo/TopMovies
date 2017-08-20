@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">TopMovies</string>
 
+    <string name="search">Search</string>
     <string name="popular_movies">Popular Movies</string>
     <string name="top_rated_movies">Top Rated Movies</string>
 

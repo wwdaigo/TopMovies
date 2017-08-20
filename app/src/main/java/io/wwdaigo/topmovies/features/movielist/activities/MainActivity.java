@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,7 +29,7 @@ import static io.wwdaigo.topmovies.commons.Constants.FragmentTags.ERROR_FRAGMENT
 import static io.wwdaigo.topmovies.commons.Constants.FragmentTags.LOADING_FRAGMENT_TAG;
 import static io.wwdaigo.topmovies.commons.Constants.FragmentTags.MOVIES_FRAGMENT_TAG;
 
-public class MainActivity extends Activity implements
+public class MainActivity extends AppCompatActivity implements
         HasFragmentInjector,
         OnMovieListFragmentInteraction,
         OnErrorFragmentInteraction {
