@@ -15,6 +15,7 @@ import io.reactivex.subjects.PublishSubject;
 import io.wwdaigo.topmovies.R;
 import io.wwdaigo.topmovies.data.BaseResponse;
 import io.wwdaigo.topmovies.data.MovieData;
+import io.wwdaigo.topmovies.preferences.PreferencesManagerType;
 import io.wwdaigo.topmovies.remote.manager.MoviesManager;
 import retrofit2.adapter.rxjava2.Result;
 
@@ -23,6 +24,9 @@ import retrofit2.adapter.rxjava2.Result;
  */
 
 public class MovieListViewModel implements MovieListViewModelType, MovieListViewModelInputs, MovieListViewModelOutputs {
+
+    @Inject
+    PreferencesManagerType preferencesManager;
 
     private MoviesManager moviesManager;
 
