@@ -29,6 +29,7 @@ import rx.functions.Action1;
 public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.MovieItemViewHolder> {
 
     private List<MovieData> movieDataList;
+    private OnSelectMovieData onSelectMovieData;
 
     public void setObservableList(Observable<List<MovieData>> observableMovieDataList) {
 
@@ -43,6 +44,10 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
                     }
                 });
 
+    }
+
+    public void setOnSelectMovieData(OnSelectMovieData onSelectMovieData) {
+        this.onSelectMovieData = onSelectMovieData;
     }
 
     @Override
@@ -92,10 +97,11 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
                         }
                     });
 
-            RxView.clicks(binding.getRoot()).subscribe(new Action1<Void>() {
+            RxView.clicks(binding.movieCardView).subscribe(new Action1<Void>() {
                 @Override
                 public void call(Void aVoid) {
-                    Log.i("CLICK", movieData.getOriginalTitle());
+                    if (onSelectMovieData != null)
+                        onSelectMovieData.selectMovieData(movieData);
                 }
             });
         }

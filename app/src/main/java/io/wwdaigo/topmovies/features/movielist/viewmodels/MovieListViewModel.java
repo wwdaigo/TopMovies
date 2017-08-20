@@ -71,7 +71,6 @@ public class MovieListViewModel implements MovieListViewModelType, MovieListView
                 .subscribe(new Consumer<Result<BaseResponse<MovieData>>>() {
                     @Override
                     public void accept(@NonNull Result<BaseResponse<MovieData>> baseResponseResult) throws Exception {
-
                         isLoadingPublish.onNext(false);
                         titleStringResourcePublish.onNext(R.string.top_rated_movies);
 
