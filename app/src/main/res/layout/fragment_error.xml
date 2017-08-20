@@ -1,0 +1,47 @@
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/error_background"
+        android:padding="@dimen/default_margin"
+        tools:context="io.wwdaigo.topmovies.features.movielist.fragments.ErrorFragment">
+
+        <ImageView
+            android:id="@+id/error_image_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/error"
+            android:layout_centerInParent="true" />
+
+        <TextView
+            android:id="@+id/title_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/error_title"
+            android:layout_above="@id/error_image_view"
+            android:gravity="center"
+            android:layout_marginBottom="@dimen/big_margin"
+            style="@style/ErrorTitleTextView"/>
+
+        <TextView
+            android:id="@+id/description_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/error_default_message"
+            android:layout_below="@id/error_image_view"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/big_margin"
+            style="@style/ErrorMessageTextView"/>
+
+        <Button
+            android:id="@+id/retry_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/retry_button"
+            android:layout_alignParentBottom="true" />
+
+    </RelativeLayout>
+</layout>

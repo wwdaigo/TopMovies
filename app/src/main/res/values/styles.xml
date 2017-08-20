@@ -29,5 +29,12 @@
         <item name="android:textColor">@color/silver</item>
     </style>
 
+    <style name="ErrorTitleTextView" parent="@android:style/TextAppearance">
+        <item name="android:textSize">32sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="ErrorMessageTextView" parent="@android:style/TextAppearance">
+        <item name="android:textSize">28sp</item>
+    </style>
 
 </resources>

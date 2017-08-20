@@ -64,8 +64,6 @@ public class MovieListFragment extends Fragment implements OnSelectMovieData {
                 inflater, R.layout.fragment_movie_list, container, false);
 
         bindMovieListRecyclerView();
-        viewModel.getInputs().loadSavedOption(getActivity());
-
         return binding.getRoot();
     }
 
@@ -83,6 +81,7 @@ public class MovieListFragment extends Fragment implements OnSelectMovieData {
 
         disposable = new CompositeDisposable();
         bindOutputs();
+        loadSavedOption();
     }
 
     @Override
@@ -92,11 +91,25 @@ public class MovieListFragment extends Fragment implements OnSelectMovieData {
         disposable.clear();
     }
 
+    public void loadSavedOption() {
+        viewModel.getInputs().loadSavedOption(getActivity());
+    }
+
     private void bindOutputs() {
         Disposable loadingDisposable = viewModel.getOutputs().isLoading().subscribe(new Consumer<Boolean>() {
             @Override
             public void accept(@NonNull Boolean isLoading) throws Exception {
                 mListener.toggleLoadingMode(isLoading);
+            }
+        });
+
+        Disposable hasErrorDisposable = viewModel.getOutputs().hasError().subscribe(new Consumer<Boolean>() {
+            @Override
+            public void accept(@NonNull Boolean hasError) throws Exception {
+                if (hasError) {
+                    if (mListener != null)
+                        mListener.showError();
+                }
             }
         });
 
