@@ -14,7 +14,6 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".features.movielist.activities.MainActivity"
-
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,8 +21,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".features.details.DetailsActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        <activity android:name=".features.details.activities.DetailsActivity"
+            android:theme="@style/Theme.Design.Light.NoActionBar"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:parentActivityName=".features.movielist.activities.MainActivity"/>
