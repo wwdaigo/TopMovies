@@ -42,8 +42,6 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
 
     }
 
-
-
     @Override
     public MovieItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
@@ -90,6 +88,8 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
                             binding.loadingImageProgressBar.setVisibility(View.GONE);
                         }
                     });
+
+            
         }
     }
 }
