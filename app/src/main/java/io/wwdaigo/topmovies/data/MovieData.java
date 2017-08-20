@@ -2,6 +2,7 @@ package io.wwdaigo.topmovies.data;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import io.wwdaigo.topmovies.commons.DateFormats;
@@ -14,7 +15,7 @@ import static io.wwdaigo.topmovies.commons.Constants.Image.IMAGE_URL;
  * Created by daigomatsuoka on 19/08/17.
  */
 
-public final class MovieData {
+public final class MovieData implements Serializable {
     private int id;
     private String title;
     @SerializedName("original_title")

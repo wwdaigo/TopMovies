@@ -12,6 +12,8 @@ import io.wwdaigo.topmovies.features.movielist.fragments.MovieListFragment;
 import io.wwdaigo.topmovies.features.movielist.viewmodels.MovieListViewModel;
 import io.wwdaigo.topmovies.features.movielist.viewmodels.MovieListViewModelType;
 import io.wwdaigo.topmovies.remote.manager.MoviesManager;
+import io.wwdaigo.topmovies.router.MainRouter;
+import io.wwdaigo.topmovies.router.MainRouterType;
 
 /**
  * Created by daigomatsuoka on 19/08/17.
@@ -34,6 +36,11 @@ public abstract class MovieListModule {
     @Provides
     static MovieListAdapter providesMovieListAdapter() {
         return new MovieListAdapter();
+    }
+
+    @Provides
+    static MainRouterType providesMainRouter() {
+        return new MainRouter();
     }
 
 }

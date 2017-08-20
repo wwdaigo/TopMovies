@@ -24,6 +24,7 @@ import io.wwdaigo.topmovies.databinding.FragmentMovieListBinding;
 import io.wwdaigo.topmovies.features.movielist.adapters.MovieListAdapter;
 import io.wwdaigo.topmovies.features.movielist.adapters.OnSelectMovieData;
 import io.wwdaigo.topmovies.features.movielist.viewmodels.MovieListViewModelType;
+import io.wwdaigo.topmovies.router.MainRouterType;
 
 public class MovieListFragment extends Fragment implements OnSelectMovieData {
 
@@ -32,6 +33,9 @@ public class MovieListFragment extends Fragment implements OnSelectMovieData {
 
     @Inject
     MovieListAdapter movieListAdapter;
+
+    @Inject
+    MainRouterType mainRouter;
 
     private FragmentMovieListBinding binding;
     private CompositeDisposable disposable;
@@ -142,6 +146,6 @@ public class MovieListFragment extends Fragment implements OnSelectMovieData {
 
     @Override
     public void selectMovieData(MovieData movieData) {
-        Log.i("SDAS", movieData.getOriginalTitle());
+        mainRouter.openMovie(getActivity(), movieData);
     }
 }

@@ -23,6 +23,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".features.details.DetailsActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:parentActivityName=".features.movielist.activities.MainActivity"/>
