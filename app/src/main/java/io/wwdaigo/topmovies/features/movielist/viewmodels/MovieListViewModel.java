@@ -1,5 +1,6 @@
 package io.wwdaigo.topmovies.features.movielist.viewmodels;
 
+import android.content.Context;
 import android.util.Log;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.PublishSubject;
 import io.wwdaigo.topmovies.R;
+import io.wwdaigo.topmovies.commons.IntPrefsKeys;
 import io.wwdaigo.topmovies.data.BaseResponse;
 import io.wwdaigo.topmovies.data.MovieData;
 import io.wwdaigo.topmovies.preferences.PreferencesManagerType;
@@ -64,6 +66,25 @@ public class MovieListViewModel implements MovieListViewModelType, MovieListView
     }
 
     /* INPUTS */
+
+    @Override
+    public void loadSavedOption(Context context) {
+        int option = preferencesManager.loadInt(context, IntPrefsKeys.SELECTED_LIST);
+        switch (option) {
+            case R.id.menu_main_popular:
+                loadMostPopularMovies();
+                break;
+
+            case R.id.menu_main_top_rated:
+                loadTopRatedMovies();
+                break;
+        }
+    }
+
+    @Override
+    public void saveOption(Context context, int option) {
+        preferencesManager.saveInt(context, IntPrefsKeys.SELECTED_LIST, option);
+    }
 
     @Override
     public void loadTopRatedMovies() {
