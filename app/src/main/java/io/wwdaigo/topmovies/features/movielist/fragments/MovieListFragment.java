@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,11 +19,13 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.wwdaigo.topmovies.R;
+import io.wwdaigo.topmovies.data.MovieData;
 import io.wwdaigo.topmovies.databinding.FragmentMovieListBinding;
 import io.wwdaigo.topmovies.features.movielist.adapters.MovieListAdapter;
+import io.wwdaigo.topmovies.features.movielist.adapters.OnSelectMovieData;
 import io.wwdaigo.topmovies.features.movielist.viewmodels.MovieListViewModelType;
 
-public class MovieListFragment extends Fragment {
+public class MovieListFragment extends Fragment implements OnSelectMovieData {
 
     @Inject
     MovieListViewModelType viewModel;
@@ -106,6 +109,7 @@ public class MovieListFragment extends Fragment {
     private void bindMovieListRecyclerView() {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), numberOfColumns());
         movieListAdapter.setObservableList(viewModel.getOutputs().listMovieData());
+        movieListAdapter.setOnSelectMovieData(this);
 
         binding.movieListRecyclerView.setHasFixedSize(true);
         binding.movieListRecyclerView.setLayoutManager(gridLayoutManager);
@@ -134,5 +138,10 @@ public class MovieListFragment extends Fragment {
                 viewModel.getInputs().loadTopRatedMovies();
                 break;
         }
+    }
+
+    @Override
+    public void selectMovieData(MovieData movieData) {
+        Log.i("SDAS", movieData.getOriginalTitle());
     }
 }

@@ -1,10 +1,12 @@
 package io.wwdaigo.topmovies.features.movielist.adapters;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.jakewharton.rxbinding.view.RxView;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -18,6 +20,7 @@ import io.reactivex.functions.Consumer;
 import io.wwdaigo.topmovies.R;
 import io.wwdaigo.topmovies.data.MovieData;
 import io.wwdaigo.topmovies.databinding.MovieListCardItemBinding;
+import rx.functions.Action1;
 
 /**
  * Created by daigomatsuoka on 19/08/17.
@@ -26,6 +29,7 @@ import io.wwdaigo.topmovies.databinding.MovieListCardItemBinding;
 public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.MovieItemViewHolder> {
 
     private List<MovieData> movieDataList;
+    private OnSelectMovieData onSelectMovieData;
 
     public void setObservableList(Observable<List<MovieData>> observableMovieDataList) {
 
@@ -42,7 +46,9 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
 
     }
 
-
+    public void setOnSelectMovieData(OnSelectMovieData onSelectMovieData) {
+        this.onSelectMovieData = onSelectMovieData;
+    }
 
     @Override
     public MovieItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -74,7 +80,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
             this.binding = itemBinding;
         }
 
-        public void bind (MovieData movieData) {
+        public void bind (final MovieData movieData) {
             binding.setMovieData(movieData);
             Picasso.with(binding.getRoot().getContext())
                     .load(movieData.getPosterPath())
@@ -90,6 +96,14 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
                             binding.loadingImageProgressBar.setVisibility(View.GONE);
                         }
                     });
+
+            RxView.clicks(binding.movieCardView).subscribe(new Action1<Void>() {
+                @Override
+                public void call(Void aVoid) {
+                    if (onSelectMovieData != null)
+                        onSelectMovieData.selectMovieData(movieData);
+                }
+            });
         }
     }
 }
