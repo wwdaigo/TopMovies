@@ -17,11 +17,11 @@ public enum IntPrefsKeys {
         mDefaultValue = defaultValue;
     }
 
-    public int getmDefaultValue() {
+    public int getDefaultValue() {
         return mDefaultValue;
     }
 
-    public String getmKey() {
+    public String getKey() {
         return mKey;
     }
 }
