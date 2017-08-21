@@ -4,7 +4,7 @@ import android.content.Context;
 
 import io.wwdaigo.topmovies.data.MovieData;
 import io.wwdaigo.topmovies.features.details.activities.DetailsActivity;
-import io.wwdaigo.topmovies.features.search.SearchActivity;
+import io.wwdaigo.topmovies.features.search.activities.SearchActivity;
 
 /**
  * Created by daigomatsuoka on 20/08/17.
