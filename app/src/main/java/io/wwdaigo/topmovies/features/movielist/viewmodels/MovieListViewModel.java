@@ -39,6 +39,8 @@ public class MovieListViewModel extends ViewModel implements MovieListViewModelT
 
     public MovieListViewModel(MoviesManager moviesManager, PreferencesManagerType preferencesManager) {
 
+        super();
+        
         this.moviesManager = moviesManager;
         this.preferencesManager = preferencesManager;
 
