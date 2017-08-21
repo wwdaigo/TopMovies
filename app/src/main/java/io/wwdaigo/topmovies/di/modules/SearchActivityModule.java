@@ -5,6 +5,7 @@ import javax.inject.Named;
 import dagger.Module;
 import dagger.Provides;
 import io.reactivex.disposables.CompositeDisposable;
+import io.wwdaigo.topmovies.features.search.adapters.SearchAdapter;
 import io.wwdaigo.topmovies.features.search.viewmodels.SearchViewModel;
 import io.wwdaigo.topmovies.features.search.viewmodels.SearchViewModelType;
 import io.wwdaigo.topmovies.remote.manager.MoviesManager;
@@ -19,6 +20,11 @@ public class SearchActivityModule {
     @Provides
     SearchViewModelType providesMovieListViewModel(MoviesManager moviesManager) {
         return new SearchViewModel(moviesManager);
+    }
+
+    @Provides
+    SearchAdapter providesSearchAdapter() {
+        return new SearchAdapter();
     }
 
     @Provides

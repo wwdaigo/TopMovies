@@ -49,7 +49,7 @@ public class SearchViewModel extends ViewModel implements SearchViewModelType, S
     public void search(String keyWord) {
         isLoadingPublish.onNext(true);
 
-        moviesManager.getTopRated()
+        moviesManager.searchMovie(keyWord)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<Result<BaseResponse<MovieData>>>() {

@@ -75,6 +75,11 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        // empty
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         disposable.clear();

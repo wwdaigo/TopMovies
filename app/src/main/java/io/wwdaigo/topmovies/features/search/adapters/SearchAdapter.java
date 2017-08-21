@@ -1,9 +1,7 @@
 package io.wwdaigo.topmovies.features.search.adapters;
 
-import android.databinding.DataBindingUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
@@ -19,11 +17,11 @@ import io.wwdaigo.topmovies.databinding.SearchListItemBinding;
  * Created by marcelo.matsuoka on 21/08/17.
  */
 
-public class SearchViewModelAdapter extends RecyclerView.Adapter<SearchViewModelAdapter.SearchViewHolder> {
+public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchViewHolder> {
 
     private List<MovieData> movieDataList;
 
-    public SearchViewModelAdapter() {
+    public SearchAdapter() {
         movieDataList = new ArrayList<>();
     }
 
@@ -31,8 +29,8 @@ public class SearchViewModelAdapter extends RecyclerView.Adapter<SearchViewModel
         observable.subscribe(new Consumer<List<MovieData>>() {
             @Override
             public void accept(@NonNull List<MovieData> movieDatum) throws Exception {
-                SearchViewModelAdapter.this.movieDataList = movieDatum;
-                SearchViewModelAdapter.this.notifyDataSetChanged();
+                SearchAdapter.this.movieDataList = movieDatum;
+                SearchAdapter.this.notifyDataSetChanged();
             }
         });
     }

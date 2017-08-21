@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -31,12 +32,16 @@ import io.reactivex.schedulers.Schedulers;
 import io.wwdaigo.topmovies.R;
 import io.wwdaigo.topmovies.data.MovieData;
 import io.wwdaigo.topmovies.databinding.ActivitySearchBinding;
+import io.wwdaigo.topmovies.features.search.adapters.SearchAdapter;
 import io.wwdaigo.topmovies.features.search.viewmodels.SearchViewModelType;
 
 public class SearchActivity extends AppCompatActivity {
 
     @Inject
     SearchViewModelType searchViewModel;
+
+    @Inject
+    SearchAdapter searchAdapter;
 
     @Inject
     @Named("searchActivityCompositeDisposable")
@@ -55,6 +60,8 @@ public class SearchActivity extends AppCompatActivity {
         AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_search);
+
+        bindRecyclerView();
     }
 
     @Override
@@ -132,13 +139,16 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
 
-        Disposable searchResultDisposable = searchViewModel.getOutputs().searchResult().subscribe(new Consumer<List<MovieData>>() {
-            @Override
-            public void accept(@NonNull List<MovieData> movieDatum) throws Exception {
-                Log.i("movieDatum", ""+movieDatum);
-            }
-        });
+        disposables.addAll(isLoadingDisposable);
+    }
 
-        disposables.addAll(isLoadingDisposable, searchResultDisposable);
+    private void bindRecyclerView() {
+        searchAdapter.setObservable(searchViewModel.getOutputs().searchResult());
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        binding.searchRecyclerView.setLayoutManager(layoutManager);
+        binding.searchRecyclerView.setHasFixedSize(true);
+
+        binding.searchRecyclerView.setAdapter(searchAdapter);
     }
 }
