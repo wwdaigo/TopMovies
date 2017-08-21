@@ -69,6 +69,12 @@ public class MainActivity extends AppCompatActivity implements
         viewModel.getInputs().loadSavedOption(this);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        disposable.clear();
+    }
+
     private void bindOutputs() {
         Disposable loadingDisposable = viewModel.getOutputs().isLoading().subscribe(new Consumer<Boolean>() {
             @Override
@@ -91,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements
             }
         });
 
-        disposable.addAll(loadingDisposable, titleStringResourceDisposable);
+        disposable.addAll(loadingDisposable, hasErrorDisposable, titleStringResourceDisposable);
     }
 
     private void bindMovieListRecyclerView() {
@@ -194,11 +200,5 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void selectMovieData(MovieData movieData) {
         mainRouter.openMovie(this, movieData);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        disposable.clear();
     }
 }
