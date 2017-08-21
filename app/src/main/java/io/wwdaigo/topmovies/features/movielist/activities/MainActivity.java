@@ -1,6 +1,5 @@
 package io.wwdaigo.topmovies.features.movielist.activities;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -18,18 +17,16 @@ import javax.inject.Named;
 import dagger.android.AndroidInjection;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
-import dagger.android.HasActivityInjector;
 import dagger.android.HasFragmentInjector;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.wwdaigo.topmovies.R;
-import io.wwdaigo.topmovies.App;
 import io.wwdaigo.topmovies.data.MovieData;
 import io.wwdaigo.topmovies.databinding.ActivityMainBinding;
 import io.wwdaigo.topmovies.features.movielist.adapters.MovieListAdapter;
-import io.wwdaigo.topmovies.features.movielist.adapters.OnSelectMovieData;
+import io.wwdaigo.topmovies.commons.listeners.OnSelectMovieData;
 import io.wwdaigo.topmovies.features.movielist.fragments.ErrorFragment;
 import io.wwdaigo.topmovies.features.movielist.fragments.LoadingFragment;
 import io.wwdaigo.topmovies.features.movielist.fragments.OnErrorFragmentInteraction;

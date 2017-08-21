@@ -1,7 +1,6 @@
 package io.wwdaigo.topmovies.features.movielist.adapters;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +17,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Consumer;
 import io.wwdaigo.topmovies.R;
+import io.wwdaigo.topmovies.commons.listeners.OnSelectMovieData;
 import io.wwdaigo.topmovies.data.MovieData;
 import io.wwdaigo.topmovies.databinding.MovieListCardItemBinding;
 import rx.functions.Action1;

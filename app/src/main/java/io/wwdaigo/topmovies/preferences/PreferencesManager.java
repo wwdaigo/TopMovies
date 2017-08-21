@@ -3,7 +3,7 @@ package io.wwdaigo.topmovies.preferences;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import io.wwdaigo.topmovies.commons.IntPrefsKeys;
+import io.wwdaigo.topmovies.commons.enums.IntPrefsKeys;
 
 import static io.wwdaigo.topmovies.commons.Constants.Preferences.PREFERENCES_KEY;
 

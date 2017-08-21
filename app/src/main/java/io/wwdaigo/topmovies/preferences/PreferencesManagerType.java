@@ -1,9 +1,6 @@
 package io.wwdaigo.topmovies.preferences;
 
-import android.content.Context;
-
-import dagger.multibindings.IntKey;
-import io.wwdaigo.topmovies.commons.IntPrefsKeys;
+import io.wwdaigo.topmovies.commons.enums.IntPrefsKeys;
 
 /**
  * Created by daigomatsuoka on 20/08/17.

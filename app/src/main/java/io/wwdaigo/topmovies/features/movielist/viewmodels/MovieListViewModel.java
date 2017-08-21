@@ -1,11 +1,6 @@
 package io.wwdaigo.topmovies.features.movielist.viewmodels;
 
-import android.content.Context;
-import android.util.Log;
-
 import java.util.List;
-
-import javax.inject.Inject;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -14,7 +9,7 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.PublishSubject;
 import io.wwdaigo.topmovies.R;
-import io.wwdaigo.topmovies.commons.IntPrefsKeys;
+import io.wwdaigo.topmovies.commons.enums.IntPrefsKeys;
 import io.wwdaigo.topmovies.commons.viewmodels.ViewModel;
 import io.wwdaigo.topmovies.data.BaseResponse;
 import io.wwdaigo.topmovies.data.MovieData;
