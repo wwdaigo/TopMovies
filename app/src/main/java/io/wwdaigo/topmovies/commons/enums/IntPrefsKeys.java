@@ -1,4 +1,4 @@
-package io.wwdaigo.topmovies.commons;
+package io.wwdaigo.topmovies.commons.enums;
 
 import io.wwdaigo.topmovies.R;
 

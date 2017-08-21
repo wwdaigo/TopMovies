@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Locale;
 
-import io.wwdaigo.topmovies.commons.DateFormats;
+import io.wwdaigo.topmovies.commons.enums.DateFormats;
 import io.wwdaigo.topmovies.commons.Utils;
 
 import static io.wwdaigo.topmovies.commons.Constants.Image.COVER_WIDTH;

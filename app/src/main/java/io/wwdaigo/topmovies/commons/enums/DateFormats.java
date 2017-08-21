@@ -1,4 +1,4 @@
-package io.wwdaigo.topmovies.commons;
+package io.wwdaigo.topmovies.commons.enums;
 
 /**
  * Created by daigomatsuoka on 19/08/17.

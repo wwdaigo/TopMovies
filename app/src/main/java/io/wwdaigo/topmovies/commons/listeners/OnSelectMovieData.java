@@ -1,4 +1,4 @@
-package io.wwdaigo.topmovies.features.movielist.adapters;
+package io.wwdaigo.topmovies.commons.listeners;
 
 import io.wwdaigo.topmovies.data.MovieData;
 

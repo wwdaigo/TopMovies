@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
+import dagger.android.AndroidInjection;
 import io.wwdaigo.topmovies.R;
 import io.wwdaigo.topmovies.data.MovieData;
 import io.wwdaigo.topmovies.databinding.ActivityDetailsBinding;
@@ -33,6 +34,7 @@ public class DetailsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_details);
 

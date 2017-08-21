@@ -1,11 +1,6 @@
 package io.wwdaigo.topmovies.features.movielist.viewmodels;
 
-import android.content.Context;
-import android.util.Log;
-
 import java.util.List;
-
-import javax.inject.Inject;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -14,7 +9,8 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.PublishSubject;
 import io.wwdaigo.topmovies.R;
-import io.wwdaigo.topmovies.commons.IntPrefsKeys;
+import io.wwdaigo.topmovies.commons.enums.IntPrefsKeys;
+import io.wwdaigo.topmovies.commons.viewmodels.ViewModel;
 import io.wwdaigo.topmovies.data.BaseResponse;
 import io.wwdaigo.topmovies.data.MovieData;
 import io.wwdaigo.topmovies.preferences.PreferencesManagerType;
@@ -25,16 +21,10 @@ import retrofit2.adapter.rxjava2.Result;
  * Created by daigomatsuoka on 19/08/17.
  */
 
-public class MovieListViewModel implements MovieListViewModelType, MovieListViewModelInputs, MovieListViewModelOutputs {
+public class MovieListViewModel extends ViewModel implements MovieListViewModelType, MovieListViewModelInputs, MovieListViewModelOutputs {
 
     private PreferencesManagerType preferencesManager;
     private MoviesManager moviesManager;
-
-    private PublishSubject<Boolean> isLoadingPublish;
-    private Observable<Boolean> isLoading;
-
-    private PublishSubject<Boolean> hasErrorPublish;
-    private Observable<Boolean> hasError;
 
     private PublishSubject<List<MovieData>> listMovieDataPublish;
     private Observable<List<MovieData>> listMovieData;
@@ -44,14 +34,10 @@ public class MovieListViewModel implements MovieListViewModelType, MovieListView
 
     public MovieListViewModel(MoviesManager moviesManager, PreferencesManagerType preferencesManager) {
 
+        super();
+
         this.moviesManager = moviesManager;
         this.preferencesManager = preferencesManager;
-
-        isLoadingPublish = PublishSubject.create();
-        isLoading = isLoadingPublish;
-
-        hasErrorPublish = PublishSubject.create();
-        hasError = hasErrorPublish;
 
         listMovieDataPublish = PublishSubject.create();
         listMovieData = listMovieDataPublish;
@@ -75,14 +61,10 @@ public class MovieListViewModel implements MovieListViewModelType, MovieListView
     @Override
     public void loadSavedOption() {
         int option = preferencesManager.loadInt(IntPrefsKeys.SELECTED_LIST);
-        switch (option) {
-            case R.id.menu_main_popular:
-                loadMostPopularMovies();
-                break;
-
-            case R.id.menu_main_top_rated:
-                loadTopRatedMovies();
-                break;
+        if (option == R.id.menu_main_top_rated) {
+            loadTopRatedMovies();
+        } else {
+            loadMostPopularMovies();
         }
     }
 
@@ -137,16 +119,6 @@ public class MovieListViewModel implements MovieListViewModelType, MovieListView
     }
 
     /* OUTPUTS */
-
-    @Override
-    public Observable<Boolean> isLoading() {
-        return isLoading;
-    }
-
-    @Override
-    public Observable<Boolean> hasError() {
-        return hasError;
-    }
 
     @Override
     public Observable<List<MovieData>> listMovieData() {

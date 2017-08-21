@@ -2,10 +2,10 @@ package io.wwdaigo.topmovies.commons;
 
 import android.icu.text.SimpleDateFormat;
 
-import java.text.Format;
-import java.text.ParseException;
 import java.util.Date;
 import java.util.Locale;
+
+import io.wwdaigo.topmovies.commons.enums.DateFormats;
 
 /**
  * Created by daigomatsuoka on 19/08/17.
