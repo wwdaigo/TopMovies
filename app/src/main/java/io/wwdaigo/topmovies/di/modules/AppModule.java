@@ -2,6 +2,8 @@ package io.wwdaigo.topmovies.di.modules;
 
 import android.content.Context;
 
+import javax.inject.Singleton;
+
 import dagger.Module;
 import dagger.Provides;
 import dagger.android.ContributesAndroidInjector;
@@ -9,6 +11,8 @@ import io.wwdaigo.topmovies.App;
 import io.wwdaigo.topmovies.features.movielist.activities.MainActivity;
 import io.wwdaigo.topmovies.preferences.PreferencesManager;
 import io.wwdaigo.topmovies.preferences.PreferencesManagerType;
+import io.wwdaigo.topmovies.router.MainRouter;
+import io.wwdaigo.topmovies.router.MainRouterType;
 
 /**
  * Created by daigomatsuoka on 20/08/17.
@@ -31,5 +35,10 @@ public class AppModule {
     @Provides
     static PreferencesManagerType providesPreferencesManager(Context context) {
         return new PreferencesManager(context);
+    }
+
+    @Provides
+    MainRouterType providesMainRouter() {
+        return new MainRouter();
     }
 }

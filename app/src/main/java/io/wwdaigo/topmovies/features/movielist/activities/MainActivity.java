@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import dagger.android.AndroidInjection;
 import dagger.android.AndroidInjector;
@@ -56,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements
     MainRouterType mainRouter;
 
     @Inject
+    @Named("mainActivityCompositeDisposable")
     CompositeDisposable disposable;
 
     private ActivityMainBinding binding;

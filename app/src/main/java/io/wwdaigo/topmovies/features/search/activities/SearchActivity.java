@@ -8,27 +8,42 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.View;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
+
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import dagger.android.AndroidInjection;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Cancellable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Predicate;
+import io.reactivex.schedulers.Schedulers;
 import io.wwdaigo.topmovies.R;
+import io.wwdaigo.topmovies.data.MovieData;
 import io.wwdaigo.topmovies.databinding.ActivitySearchBinding;
+import io.wwdaigo.topmovies.features.search.viewmodels.SearchViewModelType;
 
 public class SearchActivity extends AppCompatActivity {
 
+    @Inject
+    SearchViewModelType searchViewModel;
+
+    @Inject
+    @Named("searchActivityCompositeDisposable")
+    CompositeDisposable disposables;
+
     private static final int DEBOUNCE_TEXT_TIMEOUT = 1000;
 
-    private CompositeDisposable disposables = new CompositeDisposable();
     private ActivitySearchBinding binding;
 
     public static Intent startIntent(Context context) {
@@ -46,6 +61,7 @@ public class SearchActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         bindEvents();
+        bindOutputs();
     }
 
     @Override
@@ -58,10 +74,12 @@ public class SearchActivity extends AppCompatActivity {
 
     private void bindEvents() {
         Disposable searchTextDisposable = createSearchTextChangeObservable()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .doOnNext(new Consumer<String>() {
                     @Override
                     public void accept(@NonNull String s) throws Exception {
-                        Log.i("Search", "SEARCH "+ s);
+                        searchViewModel.getInputs().search(s);
                     }
                 }).subscribe();
 
@@ -104,5 +122,23 @@ public class SearchActivity extends AppCompatActivity {
                     }
                 })
                 .debounce(DEBOUNCE_TEXT_TIMEOUT, TimeUnit.MILLISECONDS);
+    }
+
+    private void bindOutputs() {
+        Disposable isLoadingDisposable = searchViewModel.getOutputs().isLoading().subscribe(new Consumer<Boolean>() {
+            @Override
+            public void accept(@NonNull Boolean isLoading) throws Exception {
+                binding.loadingProgressBar.setVisibility(isLoading ? View.VISIBLE : View.GONE);
+            }
+        });
+
+        Disposable searchResultDisposable = searchViewModel.getOutputs().searchResult().subscribe(new Consumer<List<MovieData>>() {
+            @Override
+            public void accept(@NonNull List<MovieData> movieDatum) throws Exception {
+                Log.i("movieDatum", ""+movieDatum);
+            }
+        });
+
+        disposables.addAll(isLoadingDisposable, searchResultDisposable);
     }
 }

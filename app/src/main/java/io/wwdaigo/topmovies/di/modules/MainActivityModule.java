@@ -1,5 +1,8 @@
 package io.wwdaigo.topmovies.di.modules;
 
+import javax.inject.Named;
+import javax.inject.Singleton;
+
 import dagger.Module;
 import dagger.Provides;
 import dagger.android.ContributesAndroidInjector;
@@ -31,11 +34,7 @@ public class MainActivityModule {
     }
 
     @Provides
-    MainRouterType providesMainRouter() {
-        return new MainRouter();
-    }
-
-    @Provides
+    @Named("mainActivityCompositeDisposable")
     CompositeDisposable providesCompositeDisposable() {
         return new CompositeDisposable();
     }
