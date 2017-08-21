@@ -1,4 +1,4 @@
-package io.wwdaigo.topmovies.dagger.modules;
+package io.wwdaigo.topmovies.di.modules;
 
 import dagger.Module;
 import dagger.Provides;

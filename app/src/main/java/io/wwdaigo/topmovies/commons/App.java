@@ -1,33 +1,29 @@
 package io.wwdaigo.topmovies.commons;
 
-import android.app.Activity;
 import android.app.Application;
 
-import javax.inject.Inject;
-
-import dagger.android.AndroidInjector;
-import dagger.android.DispatchingAndroidInjector;
-import dagger.android.HasActivityInjector;
-import io.wwdaigo.topmovies.dagger.components.DaggerAppComponent;
+import io.wwdaigo.topmovies.di.components.AppComponent;
+import io.wwdaigo.topmovies.di.components.DaggerAppComponent;
+import io.wwdaigo.topmovies.di.modules.AppModule;
 
 /**
  * Created by daigomatsuoka on 18/08/17.
  */
 
-public class App extends Application implements HasActivityInjector {
+public class App extends Application {
 
-    @Inject
-    DispatchingAndroidInjector<Activity> dispatchingAndroidInjector;
+    private AppComponent appComponent;
 
     @Override
     public void onCreate() {
         super.onCreate();
 
-        DaggerAppComponent.create().inject(this);
+        appComponent = DaggerAppComponent.builder()
+                .appModule(new AppModule(this))
+                .build();
     }
 
-    @Override
-    public AndroidInjector<Activity> activityInjector() {
-        return dispatchingAndroidInjector;
+    public AppComponent getAppComponent() {
+        return appComponent;
     }
 }
