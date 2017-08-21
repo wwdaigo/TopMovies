@@ -5,6 +5,7 @@ import io.wwdaigo.topmovies.data.BaseResponse;
 import io.wwdaigo.topmovies.data.MovieData;
 import retrofit2.adapter.rxjava2.Result;
 import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 /**
  * Created by daigomatsuoka on 19/08/17.
@@ -17,4 +18,7 @@ public interface MoviesRequest {
 
     @GET("movie/top_rated")
     Observable<Result<BaseResponse<MovieData>>> getMovieTopRated();
+
+    @GET("search/movie")
+    Observable<Result<BaseResponse<MovieData>>> searchMovie(@Query("query") String keywords);
 }

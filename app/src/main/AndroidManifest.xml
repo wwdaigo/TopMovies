@@ -27,7 +27,7 @@
             android:parentActivityName=".features.movielist.activities.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBar" />
-        <activity android:name=".features.search.SearchActivity"
+        <activity android:name=".features.search.activities.SearchActivity"
             android:screenOrientation="portrait"
             android:label="@string/search_title"
             android:parentActivityName=".features.movielist.activities.MainActivity"/>
