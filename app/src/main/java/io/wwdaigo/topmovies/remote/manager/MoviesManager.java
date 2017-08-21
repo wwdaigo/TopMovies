@@ -28,4 +28,8 @@ public class MoviesManager {
     public Observable<Result<BaseResponse<MovieData>>> getTopRated() {
         return moviesRequest.getMovieTopRated();
     }
+
+    public Observable<Result<BaseResponse<MovieData>>> searchMovie(String keywords) {
+        return moviesRequest.searchMovie(keywords);
+    }
 }
