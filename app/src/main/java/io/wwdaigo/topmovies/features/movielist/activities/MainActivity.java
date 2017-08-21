@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements
 
         bindMovieListRecyclerView();
         bindOutputs();
-        viewModel.getInputs().loadSavedOption(this);
+        viewModel.getInputs().loadSavedOption();
     }
 
     @Override
@@ -158,7 +158,8 @@ public class MainActivity extends AppCompatActivity implements
         int menuItemId = item.getItemId();
 
         if (menuItemId != R.id.menu_search)
-            viewModel.getInputs().saveOption(this, menuItemId);
+            viewModel.getInputs().saveOption(menuItemId);
+
         switch (menuItemId) {
             case R.id.menu_search:
                 mainRouter.openSearch(this);
@@ -185,7 +186,7 @@ public class MainActivity extends AppCompatActivity implements
                     .commit();
         }
 
-        viewModel.getInputs().loadSavedOption(this);
+        viewModel.getInputs().loadSavedOption();
     }
 
     @Override
