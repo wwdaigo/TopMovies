@@ -74,7 +74,7 @@ public class MovieListViewModel implements MovieListViewModelType, MovieListView
 
     @Override
     public void loadSavedOption(Context context) {
-        int option = preferencesManager.loadInt(context, IntPrefsKeys.SELECTED_LIST);
+        int option = preferencesManager.loadInt(IntPrefsKeys.SELECTED_LIST);
         switch (option) {
             case R.id.menu_main_popular:
                 loadMostPopularMovies();
@@ -88,7 +88,7 @@ public class MovieListViewModel implements MovieListViewModelType, MovieListView
 
     @Override
     public void saveOption(Context context, int option) {
-        preferencesManager.saveInt(context, IntPrefsKeys.SELECTED_LIST, option);
+        preferencesManager.saveInt(IntPrefsKeys.SELECTED_LIST, option);
     }
 
     @Override

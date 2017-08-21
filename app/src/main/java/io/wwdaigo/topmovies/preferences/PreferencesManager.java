@@ -13,21 +13,27 @@ import static io.wwdaigo.topmovies.commons.Constants.Preferences.PREFERENCES_KEY
 
 public class PreferencesManager implements PreferencesManagerType {
 
-    private SharedPreferences getSharedPreferences(Context context) {
+    private Context context;
+
+    public PreferencesManager(Context context) {
+        this.context = context;
+    }
+
+    private SharedPreferences getSharedPreferences() {
         return context.getSharedPreferences(PREFERENCES_KEY, Context.MODE_PRIVATE);
     }
 
     @Override
-    public void saveInt(Context context, IntPrefsKeys key, int value) {
-        getSharedPreferences(context)
+    public void saveInt(IntPrefsKeys key, int value) {
+        getSharedPreferences()
                 .edit()
                 .putInt(key.getKey(), value)
                 .apply();
     }
 
     @Override
-    public int loadInt(Context context, IntPrefsKeys key) {
-        return getSharedPreferences(context)
+    public int loadInt(IntPrefsKeys key) {
+        return getSharedPreferences()
                 .getInt(key.getKey(), key.getDefaultValue());
     }
 }

@@ -20,19 +20,16 @@ import io.wwdaigo.topmovies.router.MainRouterType;
 public abstract class MainActivityModule {
 
     @Provides
-    @ActivityScope
     static MovieListViewModelType providesMovieListViewModel(MoviesManager moviesManager, PreferencesManagerType preferencesManager) {
         return new MovieListViewModel(moviesManager, preferencesManager);
     }
 
     @Provides
-    @ActivityScope
     static MovieListAdapter providesMovieListAdapter() {
         return new MovieListAdapter();
     }
 
     @Provides
-    @ActivityScope
     static MainRouterType providesMainRouter() {
         return new MainRouter();
     }

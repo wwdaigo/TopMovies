@@ -23,14 +23,12 @@ public class AppModule {
     }
 
     @Provides
-    @ApplicationScope
     Context providesContext() {
         return this.context;
     }
 
     @Provides
-    @ApplicationScope
-    static PreferencesManagerType providesPreferencesManager() {
-        return new PreferencesManager();
+    static PreferencesManagerType providesPreferencesManager(Context context) {
+        return new PreferencesManager(context);
     }
 }
