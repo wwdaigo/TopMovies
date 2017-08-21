@@ -2,7 +2,9 @@ package io.wwdaigo.topmovies.di.modules;
 
 import dagger.Module;
 import dagger.Provides;
+import dagger.android.ContributesAndroidInjector;
 import io.reactivex.disposables.CompositeDisposable;
+import io.wwdaigo.topmovies.features.movielist.activities.MainActivity;
 import io.wwdaigo.topmovies.features.movielist.adapters.MovieListAdapter;
 import io.wwdaigo.topmovies.features.movielist.viewmodels.MovieListViewModel;
 import io.wwdaigo.topmovies.features.movielist.viewmodels.MovieListViewModelType;

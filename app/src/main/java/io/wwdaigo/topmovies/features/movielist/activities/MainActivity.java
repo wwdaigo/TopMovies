@@ -1,5 +1,6 @@
 package io.wwdaigo.topmovies.features.movielist.activities;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -13,12 +14,17 @@ import android.view.MenuItem;
 
 import javax.inject.Inject;
 
+import dagger.android.AndroidInjection;
+import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.HasActivityInjector;
+import dagger.android.HasFragmentInjector;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.wwdaigo.topmovies.R;
-import io.wwdaigo.topmovies.commons.App;
+import io.wwdaigo.topmovies.App;
 import io.wwdaigo.topmovies.data.MovieData;
 import io.wwdaigo.topmovies.databinding.ActivityMainBinding;
 import io.wwdaigo.topmovies.features.movielist.adapters.MovieListAdapter;
@@ -33,8 +39,12 @@ import static io.wwdaigo.topmovies.commons.Constants.FragmentTags.ERROR_FRAGMENT
 import static io.wwdaigo.topmovies.commons.Constants.FragmentTags.LOADING_FRAGMENT_TAG;
 
 public class MainActivity extends AppCompatActivity implements
+        HasFragmentInjector,
         OnSelectMovieData,
         OnErrorFragmentInteraction {
+
+    @Inject
+    DispatchingAndroidInjector<Fragment> dispatchingAndroidInjector;
 
     @Inject
     MovieListViewModelType viewModel;
@@ -52,8 +62,8 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
-        ((App)getApplicationContext()).getAppComponent().inject(this);
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
@@ -192,5 +202,11 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void selectMovieData(MovieData movieData) {
         mainRouter.openMovie(this, movieData);
+    }
+
+
+    @Override
+    public AndroidInjector<Fragment> fragmentInjector() {
+        return dispatchingAndroidInjector;
     }
 }
