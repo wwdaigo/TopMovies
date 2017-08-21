@@ -21,11 +21,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".features.details.activities.DetailsActivity"
-            android:theme="@style/AppThemeNoActionBar"
+        <activity
+            android:name=".features.details.activities.DetailsActivity"
             android:launchMode="singleTop"
+            android:parentActivityName=".features.movielist.activities.MainActivity"
             android:screenOrientation="portrait"
-            android:parentActivityName=".features.movielist.activities.MainActivity"/>
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity android:name=".features.search.SearchActivity"></activity>
     </application>
 
 </manifest>
