@@ -10,4 +10,5 @@ import io.wwdaigo.topmovies.data.MovieData;
 
 public interface MainRouterType {
     void openMovie(Context context, MovieData movieData);
+    void openSearch(Context context);
 }

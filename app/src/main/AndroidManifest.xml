@@ -14,6 +14,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".features.movielist.activities.MainActivity"
+            android:launchMode="singleTop"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,10 +22,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".features.details.activities.DetailsActivity"
-            android:theme="@style/AppThemeNoActionBar"
-            android:launchMode="singleTop"
+        <activity
+            android:name=".features.details.activities.DetailsActivity"
+            android:parentActivityName=".features.movielist.activities.MainActivity"
             android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity android:name=".features.search.SearchActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/search_title"
             android:parentActivityName=".features.movielist.activities.MainActivity"/>
     </application>
 

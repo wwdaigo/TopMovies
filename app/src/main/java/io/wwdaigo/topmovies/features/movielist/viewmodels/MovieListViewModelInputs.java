@@ -7,8 +7,8 @@ import android.content.Context;
  */
 
 public interface MovieListViewModelInputs {
-    void loadSavedOption(Context context);
-    void saveOption(Context context, int option);
+    void loadSavedOption();
+    void saveOption(int option);
 
     void loadTopRatedMovies();
     void loadMostPopularMovies();

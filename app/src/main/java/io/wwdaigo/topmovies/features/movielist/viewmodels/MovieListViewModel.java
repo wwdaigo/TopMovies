@@ -73,7 +73,7 @@ public class MovieListViewModel implements MovieListViewModelType, MovieListView
     /* INPUTS */
 
     @Override
-    public void loadSavedOption(Context context) {
+    public void loadSavedOption() {
         int option = preferencesManager.loadInt(IntPrefsKeys.SELECTED_LIST);
         switch (option) {
             case R.id.menu_main_popular:
@@ -87,7 +87,7 @@ public class MovieListViewModel implements MovieListViewModelType, MovieListView
     }
 
     @Override
-    public void saveOption(Context context, int option) {
+    public void saveOption(int option) {
         preferencesManager.saveInt(IntPrefsKeys.SELECTED_LIST, option);
     }
 
