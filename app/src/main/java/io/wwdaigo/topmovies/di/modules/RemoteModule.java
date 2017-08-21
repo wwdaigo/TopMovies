@@ -1,7 +1,9 @@
-package io.wwdaigo.topmovies.dagger.modules;
+package io.wwdaigo.topmovies.di.modules;
 
 import dagger.Module;
 import dagger.Provides;
+import io.wwdaigo.topmovies.di.scopes.ActivityScope;
+import io.wwdaigo.topmovies.di.scopes.ApplicationScope;
 import io.wwdaigo.topmovies.remote.RestApi;
 import io.wwdaigo.topmovies.remote.manager.MoviesManager;
 import io.wwdaigo.topmovies.remote.request.MoviesRequest;
@@ -11,20 +13,20 @@ import io.wwdaigo.topmovies.remote.request.MoviesRequest;
  */
 
 @Module
-public abstract class RemoteModule {
+public class RemoteModule {
 
     @Provides
-    static RestApi providesRestApi() {
+    RestApi providesRestApi() {
         return new RestApi();
     }
 
     @Provides
-    static MoviesRequest providesMoviesRequest(RestApi restApi) {
+    MoviesRequest providesMoviesRequest(RestApi restApi) {
         return restApi.getMovieRequest();
     }
 
     @Provides
-    static MoviesManager providesMoviesManager(MoviesRequest request) {
+    MoviesManager providesMoviesManager(MoviesRequest request) {
         return new MoviesManager(request);
     }
 }

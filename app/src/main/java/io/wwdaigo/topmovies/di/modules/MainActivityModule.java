@@ -1,9 +1,8 @@
-package io.wwdaigo.topmovies.dagger.modules;
+package io.wwdaigo.topmovies.di.modules;
 
 import dagger.Module;
 import dagger.Provides;
-import dagger.android.ContributesAndroidInjector;
-import io.wwdaigo.topmovies.features.movielist.activities.MainActivity;
+import io.reactivex.disposables.CompositeDisposable;
 import io.wwdaigo.topmovies.features.movielist.adapters.MovieListAdapter;
 import io.wwdaigo.topmovies.features.movielist.viewmodels.MovieListViewModel;
 import io.wwdaigo.topmovies.features.movielist.viewmodels.MovieListViewModelType;
@@ -17,24 +16,26 @@ import io.wwdaigo.topmovies.router.MainRouterType;
  */
 
 @Module
-public abstract class MovieListModule {
-
-    @ContributesAndroidInjector
-    abstract MainActivity mainActivityInjector();
+public class MainActivityModule {
 
     @Provides
-    static MovieListViewModelType providesMovieListViewModel(MoviesManager moviesManager, PreferencesManagerType preferencesManager) {
+    MovieListViewModelType providesMovieListViewModel(MoviesManager moviesManager, PreferencesManagerType preferencesManager) {
         return new MovieListViewModel(moviesManager, preferencesManager);
     }
 
     @Provides
-    static MovieListAdapter providesMovieListAdapter() {
+    MovieListAdapter providesMovieListAdapter() {
         return new MovieListAdapter();
     }
 
     @Provides
-    static MainRouterType providesMainRouter() {
+    MainRouterType providesMainRouter() {
         return new MainRouter();
+    }
+
+    @Provides
+    CompositeDisposable providesCompositeDisposable() {
+        return new CompositeDisposable();
     }
 
 }

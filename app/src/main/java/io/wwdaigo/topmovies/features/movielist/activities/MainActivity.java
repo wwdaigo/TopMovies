@@ -13,15 +13,12 @@ import android.view.MenuItem;
 
 import javax.inject.Inject;
 
-import dagger.android.AndroidInjection;
-import dagger.android.AndroidInjector;
-import dagger.android.DispatchingAndroidInjector;
-import dagger.android.HasFragmentInjector;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.wwdaigo.topmovies.R;
+import io.wwdaigo.topmovies.commons.App;
 import io.wwdaigo.topmovies.data.MovieData;
 import io.wwdaigo.topmovies.databinding.ActivityMainBinding;
 import io.wwdaigo.topmovies.features.movielist.adapters.MovieListAdapter;
@@ -36,12 +33,8 @@ import static io.wwdaigo.topmovies.commons.Constants.FragmentTags.ERROR_FRAGMENT
 import static io.wwdaigo.topmovies.commons.Constants.FragmentTags.LOADING_FRAGMENT_TAG;
 
 public class MainActivity extends AppCompatActivity implements
-        HasFragmentInjector,
         OnSelectMovieData,
         OnErrorFragmentInteraction {
-
-    @Inject
-    DispatchingAndroidInjector<Fragment> fragmentInjector;
 
     @Inject
     MovieListViewModelType viewModel;
@@ -52,17 +45,17 @@ public class MainActivity extends AppCompatActivity implements
     @Inject
     MainRouterType mainRouter;
 
-    private CompositeDisposable disposable;
+    @Inject
+    CompositeDisposable disposable;
+
     private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        AndroidInjection.inject(this);
-
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        ((App)getApplicationContext()).getAppComponent().inject(this);
 
-        disposable = new CompositeDisposable();
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
         bindMovieListRecyclerView();
         bindOutputs();
@@ -120,11 +113,6 @@ public class MainActivity extends AppCompatActivity implements
         int nColumns = width / widthDivider;
         if (nColumns < minCols) return minCols;
         return nColumns;
-    }
-
-    @Override
-    public AndroidInjector<Fragment> fragmentInjector() {
-        return fragmentInjector;
     }
 
     public void toggleLoadingMode(boolean loading) {

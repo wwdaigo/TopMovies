@@ -11,6 +11,6 @@ import io.wwdaigo.topmovies.commons.IntPrefsKeys;
 
 public interface PreferencesManagerType {
 
-    void saveInt(Context context, IntPrefsKeys key, int value);
-    int loadInt(Context context, IntPrefsKeys key);
+    void saveInt(IntPrefsKeys key, int value);
+    int loadInt(IntPrefsKeys key);
 }
