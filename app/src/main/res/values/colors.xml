@@ -9,4 +9,5 @@
     <color name="loading_text">#CCCCCC</color>
     <color name="silver">#999999</color>
     <color name="demi_white">#DDFFFFFF</color>
+    <color name="line_color">#ACACAC</color>
 </resources>
