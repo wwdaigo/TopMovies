@@ -30,18 +30,24 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Predicate;
 import io.reactivex.schedulers.Schedulers;
 import io.wwdaigo.topmovies.R;
+import io.wwdaigo.topmovies.commons.listeners.OnSelectMovieData;
 import io.wwdaigo.topmovies.data.MovieData;
 import io.wwdaigo.topmovies.databinding.ActivitySearchBinding;
 import io.wwdaigo.topmovies.features.search.adapters.SearchAdapter;
 import io.wwdaigo.topmovies.features.search.viewmodels.SearchViewModelType;
+import io.wwdaigo.topmovies.router.MainRouter;
+import io.wwdaigo.topmovies.router.MainRouterType;
 
-public class SearchActivity extends AppCompatActivity {
+public class SearchActivity extends AppCompatActivity implements OnSelectMovieData {
 
     @Inject
     SearchViewModelType searchViewModel;
 
     @Inject
     SearchAdapter searchAdapter;
+
+    @Inject
+    MainRouterType mainRouter;
 
     @Inject
     @Named("searchActivityCompositeDisposable")
@@ -144,11 +150,17 @@ public class SearchActivity extends AppCompatActivity {
 
     private void bindRecyclerView() {
         searchAdapter.setObservable(searchViewModel.getOutputs().searchResult());
+        searchAdapter.setOnSelectMovieData(this);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         binding.searchRecyclerView.setLayoutManager(layoutManager);
         binding.searchRecyclerView.setHasFixedSize(true);
 
         binding.searchRecyclerView.setAdapter(searchAdapter);
+    }
+
+    @Override
+    public void selectMovieData(MovieData movieData) {
+        mainRouter.openMovie(this, movieData);
     }
 }

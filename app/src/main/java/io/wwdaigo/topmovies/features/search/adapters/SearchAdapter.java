@@ -4,14 +4,18 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
+import com.jakewharton.rxbinding.view.RxView;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Observable;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Consumer;
+import io.wwdaigo.topmovies.commons.listeners.OnSelectMovieData;
 import io.wwdaigo.topmovies.data.MovieData;
 import io.wwdaigo.topmovies.databinding.SearchListItemBinding;
+import rx.functions.Action1;
 
 /**
  * Created by marcelo.matsuoka on 21/08/17.
@@ -20,6 +24,7 @@ import io.wwdaigo.topmovies.databinding.SearchListItemBinding;
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchViewHolder> {
 
     private List<MovieData> movieDataList;
+    private OnSelectMovieData onSelectMovieData;
 
     public SearchAdapter() {
         movieDataList = new ArrayList<>();
@@ -33,6 +38,10 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
                 SearchAdapter.this.notifyDataSetChanged();
             }
         });
+    }
+
+    public void setOnSelectMovieData(OnSelectMovieData onSelectMovieData) {
+        this.onSelectMovieData = onSelectMovieData;
     }
 
     @Override
@@ -62,8 +71,17 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
             this.binding = binding;
         }
 
-        public void bind(MovieData movieData) {
+        public void bind(final MovieData movieData) {
             binding.setMovieData(movieData);
+
+            if (onSelectMovieData != null) {
+                RxView.clicks(binding.getRoot()).subscribe(new Action1<Void>() {
+                    @Override
+                    public void call(Void aVoid) {
+                        SearchAdapter.this.onSelectMovieData.selectMovieData(movieData);
+                    }
+                });
+            }
         }
     }
 }
