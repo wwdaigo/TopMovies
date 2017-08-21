@@ -1,5 +1,7 @@
 package io.wwdaigo.topmovies.di.components;
 
+import javax.inject.Singleton;
+
 import dagger.Component;
 import io.wwdaigo.topmovies.commons.App;
 import io.wwdaigo.topmovies.di.modules.AppModule;
@@ -17,7 +19,6 @@ import io.wwdaigo.topmovies.features.movielist.activities.MainActivity;
         AppModule.class,
         MainActivityModule.class,
         RemoteModule.class})
-@ApplicationScope
 public interface AppComponent {
     void inject(MainActivity activity);
     void inject(DetailsActivity activity);

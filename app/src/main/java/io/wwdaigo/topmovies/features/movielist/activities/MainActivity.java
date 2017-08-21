@@ -45,7 +45,9 @@ public class MainActivity extends AppCompatActivity implements
     @Inject
     MainRouterType mainRouter;
 
-    private CompositeDisposable disposable;
+    @Inject
+    CompositeDisposable disposable;
+
     private ActivityMainBinding binding;
 
     @Override
@@ -54,8 +56,6 @@ public class MainActivity extends AppCompatActivity implements
         ((App)getApplicationContext()).getAppComponent().inject(this);
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-
-        disposable = new CompositeDisposable();
 
         bindMovieListRecyclerView();
         bindOutputs();

@@ -13,20 +13,20 @@ import io.wwdaigo.topmovies.remote.request.MoviesRequest;
  */
 
 @Module
-public abstract class RemoteModule {
+public class RemoteModule {
 
     @Provides
-    static RestApi providesRestApi() {
+    RestApi providesRestApi() {
         return new RestApi();
     }
 
     @Provides
-    static MoviesRequest providesMoviesRequest(RestApi restApi) {
+    MoviesRequest providesMoviesRequest(RestApi restApi) {
         return restApi.getMovieRequest();
     }
 
     @Provides
-    static MoviesManager providesMoviesManager(MoviesRequest request) {
+    MoviesManager providesMoviesManager(MoviesRequest request) {
         return new MoviesManager(request);
     }
 }
