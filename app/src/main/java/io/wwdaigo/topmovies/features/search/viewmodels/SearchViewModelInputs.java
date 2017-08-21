@@ -5,4 +5,5 @@ package io.wwdaigo.topmovies.features.search.viewmodels;
  */
 
 public interface SearchViewModelInputs {
+    void search(String keyWord);
 }

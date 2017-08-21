@@ -40,7 +40,7 @@ public class MovieListViewModel extends ViewModel implements MovieListViewModelT
     public MovieListViewModel(MoviesManager moviesManager, PreferencesManagerType preferencesManager) {
 
         super();
-        
+
         this.moviesManager = moviesManager;
         this.preferencesManager = preferencesManager;
 
@@ -66,14 +66,10 @@ public class MovieListViewModel extends ViewModel implements MovieListViewModelT
     @Override
     public void loadSavedOption() {
         int option = preferencesManager.loadInt(IntPrefsKeys.SELECTED_LIST);
-        switch (option) {
-            case R.id.menu_main_popular:
-                loadMostPopularMovies();
-                break;
-
-            case R.id.menu_main_top_rated:
-                loadTopRatedMovies();
-                break;
+        if (option == R.id.menu_main_top_rated) {
+            loadTopRatedMovies();
+        } else {
+            loadMostPopularMovies();
         }
     }
 

@@ -28,6 +28,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/io/wwdaigo/topmovies/features/search/viewmodels/SearchViewModelInputs.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/io/wwdaigo/topmovies/features/search/viewmodels/SearchViewModelOutputs.java">
           <value>
             <set />
