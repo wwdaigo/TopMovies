@@ -7,7 +7,6 @@ import io.wwdaigo.topmovies.commons.App;
 import io.wwdaigo.topmovies.di.modules.AppModule;
 import io.wwdaigo.topmovies.di.modules.MainActivityModule;
 import io.wwdaigo.topmovies.di.modules.RemoteModule;
-import io.wwdaigo.topmovies.di.scopes.ApplicationScope;
 import io.wwdaigo.topmovies.features.details.activities.DetailsActivity;
 import io.wwdaigo.topmovies.features.movielist.activities.MainActivity;
 

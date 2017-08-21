@@ -154,14 +154,16 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        postMenuOptionToFragment(item.getItemId());
-        return true;
-    }
 
-    private void postMenuOptionToFragment(int optionId) {
+        int menuItemId = item.getItemId();
 
-        viewModel.getInputs().saveOption(this, optionId);
-        switch (optionId) {
+        if (menuItemId != R.id.menu_search)
+            viewModel.getInputs().saveOption(this, menuItemId);
+        switch (menuItemId) {
+            case R.id.menu_search:
+                mainRouter.openSearch(this);
+                break;
+
             case R.id.menu_main_popular:
                 viewModel.getInputs().loadMostPopularMovies();
                 break;
@@ -170,6 +172,7 @@ public class MainActivity extends AppCompatActivity implements
                 viewModel.getInputs().loadTopRatedMovies();
                 break;
         }
+        return true;
     }
 
     @Override

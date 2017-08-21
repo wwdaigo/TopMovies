@@ -5,7 +5,6 @@ import android.content.Context;
 import dagger.Module;
 import dagger.Provides;
 import io.wwdaigo.topmovies.commons.App;
-import io.wwdaigo.topmovies.di.scopes.ApplicationScope;
 import io.wwdaigo.topmovies.preferences.PreferencesManager;
 import io.wwdaigo.topmovies.preferences.PreferencesManagerType;
 

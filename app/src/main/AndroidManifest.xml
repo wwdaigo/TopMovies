@@ -29,6 +29,7 @@
             android:theme="@style/AppThemeNoActionBar" />
         <activity android:name=".features.search.SearchActivity"
             android:screenOrientation="portrait"
+            android:label="@string/search_title"
             android:parentActivityName=".features.movielist.activities.MainActivity"/>
     </application>
 
