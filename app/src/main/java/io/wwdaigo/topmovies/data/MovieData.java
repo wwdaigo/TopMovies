@@ -24,7 +24,7 @@ public final class MovieData implements Serializable {
     private String overview;
     private boolean adult;
     @SerializedName("release_date")
-    private Date releaseDate;
+    private String releaseDate;
     @SerializedName("original_language")
     private String originalLanguage;
     @SerializedName("vote_count")
@@ -67,14 +67,26 @@ public final class MovieData implements Serializable {
     }
 
     public String getYear() {
-        return Utils.dateToString(releaseDate, DateFormats.YEAR);
+        Date date = parseDate(releaseDate);
+        if (date != null)
+            return Utils.dateToString(date, DateFormats.YEAR);
+        else
+            return "N/A";
     }
 
     public String getFormatedDate() {
-        return Utils.dateToString(releaseDate, DateFormats.MM_DD_YYYY);
+        Date date = parseDate(releaseDate);
+        if (date != null)
+            return Utils.dateToString(date, DateFormats.MM_DD_YYYY);
+        else
+            return "N/A";
     }
 
     public String getFormatedVote() {
         return String.format(Locale.getDefault(), "(%d) %.1f/10", voteCount, voteAverage);
+    }
+
+    private Date parseDate(String dateStr) {
+        return Utils.stringToDate(dateStr, DateFormats.YYYY_MM_DD);
     }
 }

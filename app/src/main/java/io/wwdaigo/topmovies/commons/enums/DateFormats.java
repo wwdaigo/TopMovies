@@ -5,6 +5,7 @@ package io.wwdaigo.topmovies.commons.enums;
  */
 
 public enum DateFormats {
+    YYYY_MM_DD ("yyyy-MM-dd"),
     MM_DD_YYYY ("MM/dd/yyyy"),
     YEAR("yyyy");
 
