@@ -5,12 +5,11 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.Locale;
 
-import io.wwdaigo.topmovies.commons.enums.DateFormats;
 import io.wwdaigo.topmovies.commons.Utils;
+import io.wwdaigo.topmovies.commons.enums.DateFormats;
 
 import static io.wwdaigo.topmovies.commons.Constants.Image.COVER_WIDTH;
 import static io.wwdaigo.topmovies.commons.Constants.Image.IMAGE_URL;
@@ -69,6 +68,10 @@ public final class MovieData implements Parcelable {
         return popularity;
     }
 
+    public String getReleaseDate() {
+        return releaseDate;
+    }
+
     public String getYear() {
         Date date = parseDate(releaseDate);
         if (date != null)
@@ -83,6 +86,14 @@ public final class MovieData implements Parcelable {
             return Utils.dateToString(date, DateFormats.MM_DD_YYYY);
         else
             return "N/A";
+    }
+
+    public int getVoteCount() {
+        return voteCount;
+    }
+
+    public float getVoteAverage() {
+        return voteAverage;
     }
 
     public String getFormatedVote() {

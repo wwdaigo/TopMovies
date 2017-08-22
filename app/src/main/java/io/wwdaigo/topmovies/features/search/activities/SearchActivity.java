@@ -3,15 +3,13 @@ package io.wwdaigo.topmovies.features.search.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
@@ -35,7 +33,6 @@ import io.wwdaigo.topmovies.data.MovieData;
 import io.wwdaigo.topmovies.databinding.ActivitySearchBinding;
 import io.wwdaigo.topmovies.features.search.adapters.SearchAdapter;
 import io.wwdaigo.topmovies.features.search.viewmodels.SearchViewModelType;
-import io.wwdaigo.topmovies.router.MainRouter;
 import io.wwdaigo.topmovies.router.MainRouterType;
 
 public class SearchActivity extends AppCompatActivity implements OnSelectMovieData {

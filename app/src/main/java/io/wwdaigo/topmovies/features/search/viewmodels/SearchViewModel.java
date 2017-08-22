@@ -8,11 +8,9 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.PublishSubject;
-import io.wwdaigo.topmovies.R;
 import io.wwdaigo.topmovies.commons.viewmodels.ViewModel;
 import io.wwdaigo.topmovies.data.BaseResponse;
 import io.wwdaigo.topmovies.data.MovieData;
-import io.wwdaigo.topmovies.features.movielist.viewmodels.MovieListViewModel;
 import io.wwdaigo.topmovies.remote.manager.MoviesManager;
 import retrofit2.adapter.rxjava2.Result;
 
