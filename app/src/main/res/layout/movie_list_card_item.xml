@@ -31,7 +31,7 @@
                     android:id="@+id/movie_cover_image"
                     android:layout_width="match_parent"
                     android:scaleType="centerCrop"
-                    android:layout_height="210dp" />
+                    android:layout_height="@dimen/poster_height" />
 
                 <RelativeLayout
                     android:background="@color/background_movie_stripe"
