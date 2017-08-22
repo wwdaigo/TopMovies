@@ -1,7 +1,5 @@
 package io.wwdaigo.topmovies.di.components;
 
-import android.os.Build;
-
 import dagger.BindsInstance;
 import dagger.Component;
 import dagger.android.AndroidInjectionModule;
@@ -11,9 +9,6 @@ import io.wwdaigo.topmovies.di.modules.AppModule;
 import io.wwdaigo.topmovies.di.modules.MainActivityModule;
 import io.wwdaigo.topmovies.di.modules.RemoteModule;
 import io.wwdaigo.topmovies.di.modules.SearchActivityModule;
-import io.wwdaigo.topmovies.features.details.activities.DetailsActivity;
-import io.wwdaigo.topmovies.features.movielist.activities.MainActivity;
-import io.wwdaigo.topmovies.features.search.activities.SearchActivity;
 
 /**
  * Created by daigomatsuoka on 19/08/17.

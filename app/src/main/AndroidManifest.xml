@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".features.movielist.activities.MainActivity"
+            android:name=".features.movielist.activities.MovieListActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -24,14 +24,14 @@
         </activity>
         <activity
             android:name=".features.details.activities.DetailsActivity"
-            android:parentActivityName=".features.movielist.activities.MainActivity"
+            android:parentActivityName=".features.movielist.activities.MovieListActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeNoActionBar" />
         <activity android:name=".features.search.activities.SearchActivity"
             android:screenOrientation="portrait"
                   android:launchMode="singleTop"
             android:label="@string/search_title"
-            android:parentActivityName=".features.movielist.activities.MainActivity"/>
+            android:parentActivityName=".features.movielist.activities.MovieListActivity"/>
     </application>
 
 </manifest>

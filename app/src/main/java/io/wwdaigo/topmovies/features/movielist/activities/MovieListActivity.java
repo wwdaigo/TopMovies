@@ -24,7 +24,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.wwdaigo.topmovies.R;
 import io.wwdaigo.topmovies.data.MovieData;
-import io.wwdaigo.topmovies.databinding.ActivityMainBinding;
+import io.wwdaigo.topmovies.databinding.ActivityMovieListBinding;
 import io.wwdaigo.topmovies.features.movielist.adapters.MovieListAdapter;
 import io.wwdaigo.topmovies.commons.listeners.OnSelectMovieData;
 import io.wwdaigo.topmovies.features.movielist.fragments.ErrorFragment;
@@ -36,7 +36,7 @@ import io.wwdaigo.topmovies.router.MainRouterType;
 import static io.wwdaigo.topmovies.commons.Constants.FragmentTags.ERROR_FRAGMENT_TAG;
 import static io.wwdaigo.topmovies.commons.Constants.FragmentTags.LOADING_FRAGMENT_TAG;
 
-public class MainActivity extends AppCompatActivity implements
+public class MovieListActivity extends AppCompatActivity implements
         HasFragmentInjector,
         OnSelectMovieData,
         OnErrorFragmentInteraction {
@@ -57,14 +57,14 @@ public class MainActivity extends AppCompatActivity implements
     @Named("mainActivityCompositeDisposable")
     CompositeDisposable disposable;
 
-    private ActivityMainBinding binding;
+    private ActivityMovieListBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_movie_list);
 
         bindMovieListRecyclerView();
         bindOutputs();
