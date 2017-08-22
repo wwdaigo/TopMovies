@@ -1,7 +1,5 @@
 package io.wwdaigo.topmovies.features.movielist.viewmodels;
 
-import android.content.Context;
-
 /**
  * Created by daigomatsuoka on 19/08/17.
  */

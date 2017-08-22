@@ -3,8 +3,6 @@ package io.wwdaigo.topmovies;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.List;
-
 import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Consumer;
 import io.reactivex.observers.TestObserver;
@@ -13,7 +11,6 @@ import io.wwdaigo.topmovies.data.MovieData;
 import io.wwdaigo.topmovies.remote.RestApi;
 import io.wwdaigo.topmovies.remote.manager.MoviesManager;
 import io.wwdaigo.topmovies.remote.request.MoviesRequest;
-import io.wwdaigo.topmovies.utils.Constants;
 import io.wwdaigo.topmovies.utils.JsonLoader;
 import okhttp3.HttpUrl;
 import okhttp3.mockwebserver.MockResponse;

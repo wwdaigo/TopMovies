@@ -1,11 +1,9 @@
-package io.wwdaigo.topmovies;
+package io.wwdaigo.topmovies.utils;
 
 import com.google.common.io.ByteStreams;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 
 /**
  * Created by daigomatsuoka on 22/08/17.
