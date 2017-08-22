@@ -2,9 +2,11 @@ package io.wwdaigo.topmovies.di.modules;
 
 import dagger.Module;
 import dagger.Provides;
+import io.wwdaigo.topmovies.BuildConfig;
 import io.wwdaigo.topmovies.remote.RestApi;
 import io.wwdaigo.topmovies.remote.manager.MoviesManager;
 import io.wwdaigo.topmovies.remote.request.MoviesRequest;
+import okhttp3.HttpUrl;
 
 /**
  * Created by daigomatsuoka on 18/08/17.
@@ -14,8 +16,13 @@ import io.wwdaigo.topmovies.remote.request.MoviesRequest;
 public class RemoteModule {
 
     @Provides
-    RestApi providesRestApi() {
-        return new RestApi();
+    HttpUrl providesHttpUrl() {
+        return HttpUrl.parse(BuildConfig.SERVER_URL);
+    }
+
+    @Provides
+    RestApi providesRestApi(HttpUrl httpUrl) {
+        return new RestApi(httpUrl);
     }
 
     @Provides
