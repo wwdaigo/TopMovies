@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">TopMovies</string>
+    <string name="search_title">Search</string>
+    <string name="search_placeholder">Which movie are you looking for?</string>
+
+    <string name="search">Search</string>
+    <string name="popular_movies">Popular Movies</string>
+    <string name="top_rated_movies">Top Rated Movies</string>
+
+    <string name="loading_text">Hold on!\nWe are getting your movies!</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="release_date">Release date</string>
+
+    <string name="error_title">Ooops!</string>
+    <string name="error_default_message">Something is wrong here!</string>
+    <string name="retry_button">Try again!</string>
 </resources>

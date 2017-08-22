@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="thin_line">1dp</dimen>
+    <dimen name="big_margin">32dp</dimen>
+    <dimen name="default_margin">16dp</dimen>
+    <dimen name="half_margin">8dp</dimen>
+    <dimen name="small_margin">4dp</dimen>
+    <dimen name="loading_text_size">20sp</dimen>
+    <dimen name="toolbar_margin">24sp</dimen>
+    <dimen name="collapsing_toolbar_height">242dp</dimen>
+    <dimen name="backdrop_image_height">240dp</dimen>
+    <dimen name="card_view_corner">4dp</dimen>
+    <dimen name="poster_height">300dp</dimen>
+</resources>
