@@ -46,7 +46,7 @@ public class DetailsActivity extends AppCompatActivity {
 
     private void getIntentExtas() {
         Intent intent = getIntent();
-        movieData = (MovieData) intent.getSerializableExtra(EXTRA_MOVIE_DATA);
+        movieData = intent.getParcelableExtra(EXTRA_MOVIE_DATA);
     }
 
     private void bindToolBar() {

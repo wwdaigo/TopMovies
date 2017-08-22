@@ -1,5 +1,8 @@
 package io.wwdaigo.topmovies.data;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
@@ -16,7 +19,7 @@ import static io.wwdaigo.topmovies.commons.Constants.Image.IMAGE_URL;
  * Created by daigomatsuoka on 19/08/17.
  */
 
-public final class MovieData implements Serializable {
+public final class MovieData implements Parcelable {
     private int id;
     private String title;
     @SerializedName("original_title")
@@ -89,4 +92,57 @@ public final class MovieData implements Serializable {
     private Date parseDate(String dateStr) {
         return Utils.stringToDate(dateStr, DateFormats.YYYY_MM_DD);
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.id);
+        dest.writeString(this.title);
+        dest.writeString(this.originalTitle);
+        dest.writeString(this.overview);
+        dest.writeByte(this.adult ? (byte) 1 : (byte) 0);
+        dest.writeString(this.releaseDate);
+        dest.writeString(this.originalLanguage);
+        dest.writeInt(this.voteCount);
+        dest.writeString(this.posterPath);
+        dest.writeString(this.backdropPath);
+        dest.writeByte(this.video ? (byte) 1 : (byte) 0);
+        dest.writeFloat(this.popularity);
+        dest.writeFloat(this.voteAverage);
+    }
+
+    public MovieData() {
+    }
+
+    protected MovieData(Parcel in) {
+        this.id = in.readInt();
+        this.title = in.readString();
+        this.originalTitle = in.readString();
+        this.overview = in.readString();
+        this.adult = in.readByte() != 0;
+        this.releaseDate = in.readString();
+        this.originalLanguage = in.readString();
+        this.voteCount = in.readInt();
+        this.posterPath = in.readString();
+        this.backdropPath = in.readString();
+        this.video = in.readByte() != 0;
+        this.popularity = in.readFloat();
+        this.voteAverage = in.readFloat();
+    }
+
+    public static final Parcelable.Creator<MovieData> CREATOR = new Parcelable.Creator<MovieData>() {
+        @Override
+        public MovieData createFromParcel(Parcel source) {
+            return new MovieData(source);
+        }
+
+        @Override
+        public MovieData[] newArray(int size) {
+            return new MovieData[size];
+        }
+    };
 }
