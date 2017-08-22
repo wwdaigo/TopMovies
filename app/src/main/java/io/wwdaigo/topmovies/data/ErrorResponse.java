@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by daigomatsuoka on 20/08/17.
  */
 
-public class ErrorResponse {
+public final class ErrorResponse {
     @SerializedName("status_code")
     private int statusCode;
     @SerializedName("status_message")

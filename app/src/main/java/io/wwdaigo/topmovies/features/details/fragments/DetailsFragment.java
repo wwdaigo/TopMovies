@@ -26,7 +26,7 @@ public class DetailsFragment extends Fragment {
     public static DetailsFragment newInstance(MovieData movieData) {
         DetailsFragment fragment = new DetailsFragment();
         Bundle args = new Bundle();
-        args.putSerializable(ARG_MOVIE_DATA, movieData);
+        args.putParcelable(ARG_MOVIE_DATA, movieData);
         fragment.setArguments(args);
         return fragment;
     }
@@ -35,7 +35,7 @@ public class DetailsFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            movieData = (MovieData) getArguments().getSerializable(ARG_MOVIE_DATA);
+            movieData = getArguments().getParcelable(ARG_MOVIE_DATA);
         }
     }
 

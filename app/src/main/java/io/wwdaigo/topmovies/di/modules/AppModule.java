@@ -2,13 +2,9 @@ package io.wwdaigo.topmovies.di.modules;
 
 import android.content.Context;
 
-import javax.inject.Singleton;
-
 import dagger.Module;
 import dagger.Provides;
-import dagger.android.ContributesAndroidInjector;
 import io.wwdaigo.topmovies.App;
-import io.wwdaigo.topmovies.features.movielist.activities.MainActivity;
 import io.wwdaigo.topmovies.preferences.PreferencesManager;
 import io.wwdaigo.topmovies.preferences.PreferencesManagerType;
 import io.wwdaigo.topmovies.router.MainRouter;

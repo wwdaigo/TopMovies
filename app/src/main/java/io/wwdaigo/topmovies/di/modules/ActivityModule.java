@@ -3,7 +3,7 @@ package io.wwdaigo.topmovies.di.modules;
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 import io.wwdaigo.topmovies.features.details.activities.DetailsActivity;
-import io.wwdaigo.topmovies.features.movielist.activities.MainActivity;
+import io.wwdaigo.topmovies.features.movielist.activities.MovieListActivity;
 import io.wwdaigo.topmovies.features.search.activities.SearchActivity;
 
 /**
@@ -14,7 +14,7 @@ import io.wwdaigo.topmovies.features.search.activities.SearchActivity;
 public abstract class ActivityModule {
 
     @ContributesAndroidInjector()
-    abstract MainActivity contributeMainActivityInjector();
+    abstract MovieListActivity contributeMainActivityInjector();
 
     @ContributesAndroidInjector()
     abstract DetailsActivity contributeDetailActivityInjector();

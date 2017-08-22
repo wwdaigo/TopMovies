@@ -5,7 +5,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="io.wwdaigo.topmovies.features.movielist.activities.MainActivity">
+        tools:context="io.wwdaigo.topmovies.features.movielist.activities.MovieListActivity">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/movie_list_recycler_view"

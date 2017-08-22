@@ -46,7 +46,7 @@ public class DetailsActivity extends AppCompatActivity {
 
     private void getIntentExtas() {
         Intent intent = getIntent();
-        movieData = (MovieData) intent.getSerializableExtra(EXTRA_MOVIE_DATA);
+        movieData = intent.getParcelableExtra(EXTRA_MOVIE_DATA);
     }
 
     private void bindToolBar() {
@@ -54,7 +54,9 @@ public class DetailsActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-        setTitle("");
+
+        binding.collapsingToolbar.setTitle(movieData.getTitle());
+        binding.collapsingToolbar.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
     }
 
     private void setupBackdropImage() {
