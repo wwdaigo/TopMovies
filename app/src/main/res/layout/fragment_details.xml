@@ -50,7 +50,7 @@
         android:text="@{movieData.formatedVote}"
         tools:text = "(222) 3.1"
         style="@style/SmallTextView"
-        android:layout_marginStart="4dp"
+        android:layout_marginStart="@dimen/small_margin"
         android:layout_toEndOf="@id/popularity_rating_bar"
         android:layout_alignTop="@id/popularity_rating_bar"/>
 
